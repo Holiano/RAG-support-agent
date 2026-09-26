@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Ordresporing – {{ shop_name }}{% endblock %}
+{% block content %}
+<div class="max-w-xl">
+  <h1 class="text-2xl font-bold">Ordresporing</h1>
+  <p class="text-stone-600 mt-1 text-sm">Følg ordren din uten å logge inn. Fyll inn ordrenummeret (for eksempel VH-10001) og e-postadressen du bestilte med.</p>
+
+  <form method="post" action="/sporing" class="mt-5 bg-white border border-stone-200 rounded-xl p-5 space-y-4">
+    <div><label for="order_number" class="block text-sm font-medium mb-1">Ordrenummer</label>
+      <input id="order_number" name="order_number" value="{{ order_number }}" placeholder="VH-10001" required class="w-full rounded-lg border border-stone-300 px-3 py-2 font-mono uppercase"></div>
+    <div><label for="email" class="block text-sm font-medium mb-1">E-post</label>
+      <input id="email" name="email" type="email" value="{{ email }}" required class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+    <button class="bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-lg px-5 py-2.5">Spor ordre</button>
+  </form>
+
+  {% if searched and not order %}
+    <p class="mt-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3" role="alert">Vi fant ingen ordre med dette ordrenummeret og denne e-postadressen. Sjekk at du har skrevet begge riktig.</p>
+  {% endif %}
+</div>
+
+{% if order %}
+  <h2 class="mt-8 mb-3 text-xl font-bold">Ordre <span class="font-mono">{{ order.order_number }}</span></h2>
+  {% set show_address = false %}
+  {% include "_order.html" %}
+{% endif %}
+{% endblock %}

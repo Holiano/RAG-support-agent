@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Logg inn – {{ shop_name }}{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto">
+  <h1 class="text-2xl font-bold">Logg inn</h1>
+  <form method="post" action="/logg-inn" class="mt-5 bg-white border border-stone-200 rounded-xl p-5 space-y-4">
+    <input type="hidden" name="next" value="{{ next }}">
+    {% if error %}<p class="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2" role="alert">{{ error }}</p>{% endif %}
+    <div><label for="email" class="block text-sm font-medium mb-1">E-post</label>
+      <input id="email" name="email" type="email" value="{{ email }}" required autocomplete="username" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+    <div><label for="password" class="block text-sm font-medium mb-1">Passord</label>
+      <input id="password" name="password" type="password" required autocomplete="current-password" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+    <button class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-lg py-2.5">Logg inn</button>
+  </form>
+
+  <section class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm" aria-label="Demobrukere">
+    <p class="font-semibold text-amber-900">Demobrukere (passord: <code>demo123</code>)</p>
+    <ul class="mt-2 space-y-1">
+      {% for u in demo_users %}
+        <li class="flex justify-between gap-2"><span>{{ u.name }}</span><button type="button" class="text-brand-700 hover:underline font-mono text-xs" data-fill-login="{{ u.email }}">{{ u.email }}</button></li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>
+{% endblock %}

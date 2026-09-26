@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Kasse – {{ shop_name }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold">Kasse</h1>
+
+<div class="mt-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-sm px-4 py-3">
+  Dette er en demobutikk. Det finnes ingen ekte betaling, og du trenger ikke fylle inn kortnummer.
+</div>
+
+{% if errors %}
+<div class="mt-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm px-4 py-3" role="alert">
+  <p class="font-semibold">Vi trenger litt mer informasjon:</p>
+  <ul class="list-disc ml-5 mt-1">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+<form method="post" action="/kasse" class="mt-5 grid lg:grid-cols-[1fr_24rem] gap-6 items-start">
+  <div class="space-y-6">
+    <section class="bg-white border border-stone-200 rounded-xl p-5">
+      <h2 class="font-bold text-lg">Leveringsadresse</h2>
+      {% if not user %}<p class="text-sm text-stone-500 mt-1">Du kan handle uten å logge inn. <a href="/logg-inn?next=/kasse" class="text-brand-700 hover:underline">Logg inn</a> for å følge ordren på Mine sider.</p>{% endif %}
+      <div class="mt-4 grid sm:grid-cols-2 gap-4 text-sm">
+        <div class="sm:col-span-2"><label for="name" class="block font-medium mb-1">Fullt navn</label>
+          <input id="name" name="name" value="{{ form.name }}" required autocomplete="name" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+        <div class="sm:col-span-2"><label for="email" class="block font-medium mb-1">E-post</label>
+          <input id="email" type="email" name="email" value="{{ form.email }}" required autocomplete="email" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+        <div class="sm:col-span-2"><label for="street" class="block font-medium mb-1">Gateadresse</label>
+          <input id="street" name="street" value="{{ form.street }}" required autocomplete="street-address" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+        <div><label for="postal_code" class="block font-medium mb-1">Postnummer</label>
+          <input id="postal_code" name="postal_code" value="{{ form.postal_code }}" required inputmode="numeric" pattern="\d{4}" maxlength="4" autocomplete="postal-code" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+        <div><label for="city" class="block font-medium mb-1">Poststed</label>
+          <input id="city" name="city" value="{{ form.city }}" required autocomplete="address-level2" class="w-full rounded-lg border border-stone-300 px-3 py-2"></div>
+      </div>
+      <p class="text-xs text-stone-500 mt-3">Vi leverer ikke til Svalbard og Jan Mayen via nettbutikken. <a href="/info/frakt-og-levering" class="text-brand-700 hover:underline">Se leveringstider per landsdel</a>.</p>
+    </section>
+
+    <section class="bg-white border border-stone-200 rounded-xl p-5">
+      <h2 class="font-bold text-lg">Fraktmetode</h2>
+      <div class="mt-3 space-y-2">
+        {% for id, m in shipping_methods.items() %}
+          <label class="flex items-start gap-3 border rounded-lg p-3 text-sm cursor-pointer has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+            <input type="radio" name="method" value="{{ id }}" class="mt-1" data-name="{{ m.name }}"
+                   data-price="{{ 0 if (m.free_eligible and cart.goods_total >= free_threshold) else m.price }}" {{ 'checked' if cart.method == id }}>
+            <span class="flex-1"><span class="font-medium">{{ m.name }}</span><br><span class="text-stone-500">{{ m.description }}</span></span>
+            <span class="font-medium whitespace-nowrap">
+              {% if m.free_eligible and cart.goods_total >= free_threshold %}<span class="text-emerald-700">Gratis</span>{% else %}{{ m.price | kr }}{% endif %}
+            </span>
+          </label>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="bg-white border border-stone-200 rounded-xl p-5">
+      <h2 class="font-bold text-lg">Betaling</h2>
+      <p class="text-sm text-stone-600 mt-2">Ingen betaling i demobutikken. Bestillingen lagres i databasen med status «Mottatt».</p>
+    </section>
+  </div>
+
+  <aside class="bg-white border border-stone-200 rounded-xl p-5 lg:sticky lg:top-32" aria-label="Ordreoppsummering">
+    <h2 class="font-bold text-lg">Oppsummering</h2>
+    <ul class="mt-3 divide-y divide-stone-100 text-sm">
+      {% for l in cart.lines %}
+        <li class="py-2 flex justify-between gap-3">
+          <span>{{ l.quantity }} × {{ l.name }}<br><span class="text-stone-500">{{ l.variant_label }}</span></span>
+          <span class="whitespace-nowrap">{{ l.line_total | kr }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <dl class="text-sm space-y-1.5 border-t border-stone-200 pt-3 mt-2">
+      <div class="flex justify-between"><dt>Varer</dt><dd>{{ cart.subtotal | kr }}</dd></div>
+      {% if cart.discount %}<div class="flex justify-between text-emerald-700"><dt>Rabatt ({{ cart.code_str }})</dt><dd>−{{ cart.discount | kr }}</dd></div>{% endif %}
+      <div class="flex justify-between"><dt>Frakt (<span id="sum-method">{{ shipping_methods[cart.method].name }}</span>)</dt><dd id="sum-shipping">{% if cart.shipping == 0 %}Gratis{% else %}{{ cart.shipping | kr }}{% endif %}</dd></div>
+      <div class="flex justify-between text-base font-bold pt-2 border-t border-stone-200"><dt>Totalt</dt><dd id="sum-total" data-goods="{{ cart.goods_total }}">{{ cart.total | kr }}</dd></div>
+      <p class="text-xs text-stone-500">Inkl. mva. Endelig frakt beregnes ut fra valgt fraktmetode når du bestiller.</p>
+    </dl>
+    {% if cart.code_error %}<p class="text-sm text-red-700 mt-2">{{ cart.code_error }}</p>{% endif %}
+    <button type="submit" class="mt-4 w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-lg py-3">Fullfør bestilling (demo)</button>
+    <p class="text-xs text-stone-500 mt-2 text-center">Ved å bestille godtar du <a href="/info/retur-og-bytte" class="underline">vilkårene for retur</a>. <a href="/handlekurv" class="underline">Endre handlekurv</a></p>
+  </aside>
+</form>
+{% endblock %}

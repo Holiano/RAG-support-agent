@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card, stars, price, stock_badge, wish_button %}
+{% block title %}{{ product.name }} – {{ shop_name }}{% endblock %}
+{% block content %}
+
+<nav class="text-sm text-stone-500 mb-4" aria-label="Brødsmulesti">
+  <a href="/" class="hover:underline">Forside</a> /
+  <a href="/produkter?kategori={{ product.category }}" class="hover:underline">{{ product.category_label }}</a> /
+  <span class="text-stone-700">{{ product.name }}</span>
+</nav>
+
+<div class="grid md:grid-cols-2 gap-8">
+  <div class="relative">
+    <img src="/bilde/produkt/{{ product.id }}.svg" alt="Plasshaldar for {{ product.name }}" class="w-full rounded-2xl border border-stone-200">
+    {% if product.on_sale %}<span class="absolute top-3 left-3 bg-red-600 text-white text-sm font-semibold px-2.5 py-1 rounded">Tilbud</span>{% endif %}
+  </div>
+
+  <div>
+    <p class="text-xs uppercase tracking-wide text-stone-500">{{ product.category_label }} · SKU {{ product.sku }}</p>
+    <h1 class="text-3xl font-bold mt-1">{{ product.name }}</h1>
+    <div class="mt-2 flex items-center gap-2 text-sm">
+      {% if product.avg_rating is not none %}
+        {{ stars(product.avg_rating) }}
+        <a href="#anmeldelser" class="text-stone-600 hover:underline">{{ product.avg_rating }} ({{ product.review_count }} anmeldelser)</a>
+      {% endif %}
+    </div>
+    <p class="mt-3">{{ price(product, true) }}</p>
+    <p class="text-xs text-stone-500 mt-0.5">Inkl. mva. {% if product.on_sale %}Tilbudspris. Ordinær pris {{ product.price | kr }}.{% endif %}</p>
+    <p class="mt-3 text-stone-700">{{ product.short_description }}</p>
+
+    <form method="post" action="/handlekurv/legg-til" class="mt-5" id="add-form">
+      <input type="hidden" name="next" value="/produkt/{{ product.slug }}">
+      <fieldset>
+        <legend class="font-semibold text-sm mb-2">Velg variant</legend>
+        <div class="grid sm:grid-cols-2 gap-2" id="variants">
+          {% for v in product.variants %}
+            <label class="flex items-center justify-between gap-2 border rounded-lg px-3 py-2 text-sm cursor-pointer
+                          {{ 'opacity-50 cursor-not-allowed bg-stone-100' if v.stock == 0 else 'hover:border-brand-500 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:checked]:ring-1 has-[:checked]:ring-brand-600' }}">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="sku" value="{{ v.sku }}" data-stock="{{ v.stock }}" {{ 'disabled' if v.stock == 0 }}
+                       {{ 'checked' if first_available and first_available.sku == v.sku }} required>
+                <span>{{ v.label or 'Standard' }}</span>
+              </span>
+              {{ stock_badge(v.stock_key, v.stock_text) }}
+            </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <div class="mt-4 flex items-center gap-3">
+        <label for="quantity" class="text-sm font-semibold">Antall</label>
+        <input id="quantity" type="number" name="quantity" value="1" min="1" max="10" class="w-20 rounded-lg border border-stone-300 px-2 py-2">
+        <button type="submit" {{ 'disabled' if not product.in_stock }}
+                class="flex-1 bg-brand-700 hover:bg-brand-800 disabled:bg-stone-300 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5">
+          {{ 'Legg i handlekurv' if product.in_stock else 'Utsolgt' }}
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-3 flex items-center gap-3 text-sm">
+      {{ wish_button(product.id, wishlist, '/produkt/' ~ product.slug) }}
+      <span class="text-stone-600">{{ 'På ønskelisten din' if product.id in wishlist else 'Legg til i ønskelisten' }}</span>
+    </div>
+
+    <dl class="mt-6 grid grid-cols-2 gap-3 text-sm border-t border-stone-200 pt-4">
+      <div><dt class="text-stone-500">Garanti</dt><dd class="font-medium">{{ product.warranty_years }} år <a href="/info/garanti-og-reklamasjon" class="text-brand-700 font-normal hover:underline">(les mer)</a></dd></div>
+      <div><dt class="text-stone-500">Returrett</dt><dd class="font-medium">30 dager <a href="/info/retur-og-bytte" class="text-brand-700 font-normal hover:underline">(unntak gjelder)</a></dd></div>
+    </dl>
+  </div>
+</div>
+
+<div class="mt-10 grid lg:grid-cols-3 gap-8">
+  <section class="lg:col-span-2" aria-labelledby="beskrivelse">
+    <h2 id="beskrivelse" class="text-xl font-bold">Beskrivelse</h2>
+    <div class="mt-3 space-y-3 text-stone-700 leading-relaxed">
+      {% for para in product.description.split('\n\n') %}<p>{{ para }}</p>{% endfor %}
+    </div>
+
+    <h2 class="text-xl font-bold mt-8">Vask og vedlikehold</h2>
+    <p class="mt-3 text-stone-700">{{ product.care }}</p>
+    <p class="text-sm mt-2"><a href="/info/vedlikehald" class="text-brand-700 hover:underline">Se hele vedlikeholdsguiden</a> · <a href="/info/storleiksguide" class="text-brand-700 hover:underline">Størrelsesguide</a></p>
+  </section>
+
+  <section aria-labelledby="spesifikasjoner">
+    <h2 id="spesifikasjoner" class="text-xl font-bold">Spesifikasjoner</h2>
+    <table class="mt-3 w-full text-sm bg-white border border-stone-200 rounded-xl overflow-hidden">
+      <tbody>
+        {% for k, v in product.specs.items() %}
+          <tr class="{{ 'bg-stone-50' if loop.index is even }}"><th scope="row" class="text-left font-medium px-3 py-2 align-top w-2/5">{{ k }}</th><td class="px-3 py-2">{{ v }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<section class="mt-10" id="anmeldelser" aria-labelledby="anm-h">
+  <h2 id="anm-h" class="text-xl font-bold">Anmeldelser</h2>
+  <p class="text-xs text-stone-500 mt-1">Alle anmeldelser i denne demobutikken er demodata og ikke fra ekte kunder.</p>
+  <div class="mt-4 grid md:grid-cols-2 gap-4">
+    {% for r in reviews %}
+      <article class="bg-white border border-stone-200 rounded-xl p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">{{ stars(r.rating) }}<span class="font-semibold text-sm">{{ r.title }}</span></div>
+          {% if r.is_demo_data %}<span class="text-[10px] uppercase tracking-wide bg-amber-100 text-amber-800 rounded px-1.5 py-0.5">Demodata</span>{% endif %}
+        </div>
+        <p class="mt-2 text-sm text-stone-700">{{ r.text }}</p>
+        <p class="mt-2 text-xs text-stone-500">{{ r.author }} · {{ r.date | dato }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% if related %}
+<section class="mt-12" aria-labelledby="relaterte">
+  <h2 id="relaterte" class="text-xl font-bold">Relaterte produkter</h2>
+  <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+    {% for p in related %}{{ product_card(p, wishlist, '/produkt/' ~ product.slug) }}{% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

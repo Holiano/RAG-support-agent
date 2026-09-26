@@ -1,0 +1,572 @@
+[
+  {
+    "id": 1,
+    "product_id": 1,
+    "author": "Kristian L.",
+    "rating": 5,
+    "title": "Holder tett i ekte regnvær",
+    "text": "Brukt på tre helgeturer i høst, og har vært tørr hele veien. Hetten sitter godt over hjelm.",
+    "date": "2026-05-14",
+    "is_demo_data": true
+  },
+  {
+    "id": 2,
+    "product_id": 1,
+    "author": "Marianne T.",
+    "rating": 4,
+    "title": "God jakke, litt stor i ermene",
+    "text": "Fin kvalitet og god pustbarhet. Ermene var noe lange for meg, men ellers er jeg fornøyd.",
+    "date": "2026-06-02",
+    "is_demo_data": true
+  },
+  {
+    "id": 3,
+    "product_id": 1,
+    "author": "Espen R.",
+    "rating": 5,
+    "title": "Verdt prisen",
+    "text": "Sømmene er godt tapet og ventilasjonslommene fungerer. Tar litt plass i sekken.",
+    "date": "2026-07-19",
+    "is_demo_data": true
+  },
+  {
+    "id": 4,
+    "product_id": 2,
+    "author": "Silje H.",
+    "rating": 5,
+    "title": "Perfekt til hverdagen",
+    "text": "Bruker den til og fra jobb hver dag. Lett og pakkes ned til ingenting.",
+    "date": "2026-04-11",
+    "is_demo_data": true
+  },
+  {
+    "id": 5,
+    "product_id": 2,
+    "author": "Guro M.",
+    "rating": 3,
+    "title": "Bra, men ikke for lange turer",
+    "text": "Holder tett i vanlig regn, men i kraftig regn i flere timer ble jeg fuktig ved skuldrene.",
+    "date": "2026-05-29",
+    "is_demo_data": true
+  },
+  {
+    "id": 6,
+    "product_id": 2,
+    "author": "Linn A.",
+    "rating": 4,
+    "title": "Fin passform",
+    "text": "Damesnittet er bra og fargen er fin. Kunne gjerne hatt en lomme til på innsiden.",
+    "date": "2026-08-03",
+    "is_demo_data": true
+  },
+  {
+    "id": 7,
+    "product_id": 3,
+    "author": "Torbjørn S.",
+    "rating": 5,
+    "title": "Utrolig varm i forhold til vekten",
+    "text": "Tok den med til Rondane i september og var varm hele kvelden. Pakker seg fint ned.",
+    "date": "2026-09-05",
+    "is_demo_data": true
+  },
+  {
+    "id": 8,
+    "product_id": 3,
+    "author": "Ida K.",
+    "rating": 4,
+    "title": "Varm og lett",
+    "text": "Veldig fornøyd, men husk at den ikke er regntett. Bruker skalljakke over når det er vått.",
+    "date": "2026-09-12",
+    "is_demo_data": true
+  },
+  {
+    "id": 9,
+    "product_id": 3,
+    "author": "Petter O.",
+    "rating": 5,
+    "title": "Fin kvalitet",
+    "text": "Dunen er luftig og jakken sitter godt. Litt stor i størrelsen, så vurder å gå ned en.",
+    "date": "2026-09-18",
+    "is_demo_data": true
+  },
+  {
+    "id": 10,
+    "product_id": 4,
+    "author": "Hanne V.",
+    "rating": 4,
+    "title": "Solid fleece",
+    "text": "Tykk og myk. Litt varm til aktiv bruk, men helt perfekt som mellomlag.",
+    "date": "2026-01-22",
+    "is_demo_data": true
+  },
+  {
+    "id": 11,
+    "product_id": 4,
+    "author": "Jon-Erik B.",
+    "rating": 5,
+    "title": "Bruker den hver helg",
+    "text": "Har vasket den mange ganger og den ser fortsatt ut som ny.",
+    "date": "2026-03-08",
+    "is_demo_data": true
+  },
+  {
+    "id": 12,
+    "product_id": 4,
+    "author": "Solveig D.",
+    "rating": 4,
+    "title": "Fungerer fint",
+    "text": "Lommene er store nok for hansker og lue. Fargen er litt mørkere enn på bildet.",
+    "date": "2026-06-15",
+    "is_demo_data": true
+  },
+  {
+    "id": 13,
+    "product_id": 5,
+    "author": "Anders F.",
+    "rating": 5,
+    "title": "Støvelen jeg hadde ventet på",
+    "text": "Kjempegod støtte rundt ankelen, og membranen holdt i myra. Litt stiv de første ukene.",
+    "date": "2026-04-02",
+    "is_demo_data": true
+  },
+  {
+    "id": 14,
+    "product_id": 5,
+    "author": "Camilla J.",
+    "rating": 4,
+    "title": "Solid og varm",
+    "text": "Passer normalt, men jeg gikk opp en størrelse pga. tykke ullsokker og det var riktig.",
+    "date": "2026-05-20",
+    "is_demo_data": true
+  },
+  {
+    "id": 15,
+    "product_id": 5,
+    "author": "Rune G.",
+    "rating": 3,
+    "title": "Bra støvel, tung",
+    "text": "Kvaliteten er god, men støvelen er tung. Stivheten er bra med tung sekk.",
+    "date": "2026-07-25",
+    "is_demo_data": true
+  },
+  {
+    "id": 16,
+    "product_id": 6,
+    "author": "Kari N.",
+    "rating": 5,
+    "title": "Min faste tursko",
+    "text": "Bruker den på alt fra skogstur til hytte. Tørr og komfortabel hele dagen.",
+    "date": "2026-05-06",
+    "is_demo_data": true
+  },
+  {
+    "id": 17,
+    "product_id": 6,
+    "author": "Bjørn E.",
+    "rating": 4,
+    "title": "Fin og lett",
+    "text": "God på stier og grus. Litt slitt på tåkappen etter en sesong med mye stein.",
+    "date": "2026-07-11",
+    "is_demo_data": true
+  },
+  {
+    "id": 18,
+    "product_id": 6,
+    "author": "Nora P.",
+    "rating": 4,
+    "title": "Bra pris",
+    "text": "Passer normalt i størrelsen og krever ingen innkjøring.",
+    "date": "2026-08-21",
+    "is_demo_data": true
+  },
+  {
+    "id": 19,
+    "product_id": 7,
+    "author": "Thomas W.",
+    "rating": 5,
+    "title": "Rask og lett",
+    "text": "Løper og går i den, og den tørker raskt. Husk å gå opp en størrelse!",
+    "date": "2026-06-09",
+    "is_demo_data": true
+  },
+  {
+    "id": 20,
+    "product_id": 7,
+    "author": "Eline S.",
+    "rating": 3,
+    "title": "Bra, men liten i størrelsen",
+    "text": "Måtte bytte til en større størrelse. Etter det var den perfekt, men ikke like god i sørpe.",
+    "date": "2026-07-30",
+    "is_demo_data": true
+  },
+  {
+    "id": 21,
+    "product_id": 7,
+    "author": "Magnus H.",
+    "rating": 4,
+    "title": "Godt grep",
+    "text": "Kampene griper fint på våt stein. Ikke vanntett, men det er jo heller ikke meningen.",
+    "date": "2026-08-27",
+    "is_demo_data": true
+  },
+  {
+    "id": 22,
+    "product_id": 8,
+    "author": "Ragnhild L.",
+    "rating": 5,
+    "title": "Varme føtter",
+    "text": "Har gått i −15 med den uten problemer. Romslig og god plass til tykke sokker.",
+    "date": "2026-01-14",
+    "is_demo_data": true
+  },
+  {
+    "id": 23,
+    "product_id": 8,
+    "author": "Stian B.",
+    "rating": 4,
+    "title": "Bra vintersko",
+    "text": "Godt grep på is, men snøkragen kunne vært litt høyere.",
+    "date": "2026-02-19",
+    "is_demo_data": true
+  },
+  {
+    "id": 24,
+    "product_id": 8,
+    "author": "Vibeke A.",
+    "rating": 5,
+    "title": "Ingen frostskader lenger",
+    "text": "Tåa mine har aldri vært så varme. Velg vanlig størrelse.",
+    "date": "2026-03-03",
+    "is_demo_data": true
+  },
+  {
+    "id": 25,
+    "product_id": 9,
+    "author": "Erik M.",
+    "rating": 5,
+    "title": "Passe stor",
+    "text": "Perfekt størrelse til dagsturer. Ryggen er luftig og regntrekket er kjekt.",
+    "date": "2026-05-10",
+    "is_demo_data": true
+  },
+  {
+    "id": 26,
+    "product_id": 9,
+    "author": "Astrid R.",
+    "rating": 4,
+    "title": "God dagstursekk",
+    "text": "Litt få lommer på innsiden, men ellers veldig bra for prisen.",
+    "date": "2026-06-24",
+    "is_demo_data": true
+  },
+  {
+    "id": 27,
+    "product_id": 9,
+    "author": "Håkon T.",
+    "rating": 5,
+    "title": "Fungerer for hele familien",
+    "text": "Har kjøpt to. Barna bruker den på turer, og den tåler mye.",
+    "date": "2026-08-08",
+    "is_demo_data": true
+  },
+  {
+    "id": 28,
+    "product_id": 10,
+    "author": "Marit F.",
+    "rating": 5,
+    "title": "Perfekt til helgeturer",
+    "text": "Rommer alt til én natt, og bæringen er veldig god. S/M passet meg som er 165 cm.",
+    "date": "2026-06-18",
+    "is_demo_data": true
+  },
+  {
+    "id": 29,
+    "product_id": 10,
+    "author": "Øyvind K.",
+    "rating": 4,
+    "title": "God, men kunne vært lettere",
+    "text": "Mye funksjon, men vekten på 1 150 gram merkes. Ellers utmerket.",
+    "date": "2026-07-22",
+    "is_demo_data": true
+  },
+  {
+    "id": 30,
+    "product_id": 10,
+    "author": "Tone B.",
+    "rating": 4,
+    "title": "Bra sekk",
+    "text": "Sidelommene er store nok til flasker. Frontlynlåsen er praktisk.",
+    "date": "2026-08-30",
+    "is_demo_data": true
+  },
+  {
+    "id": 31,
+    "product_id": 11,
+    "author": "Jakob N.",
+    "rating": 5,
+    "title": "Toppturer gjort enkelt",
+    "text": "Ryggåpningen er genial for å komme til skuffe og sonde. Skifestene fungerer bra.",
+    "date": "2026-07-02",
+    "is_demo_data": true
+  },
+  {
+    "id": 32,
+    "product_id": 11,
+    "author": "Mette G.",
+    "rating": 4,
+    "title": "Solid",
+    "text": "Litt tung tom, men godt bygget. Skulle ønske hoftebeltet hadde lommer.",
+    "date": "2026-08-14",
+    "is_demo_data": true
+  },
+  {
+    "id": 33,
+    "product_id": 11,
+    "author": "Sondre L.",
+    "rating": 5,
+    "title": "Bedre enn forventet",
+    "text": "Bæringen er stabil selv med skiene på. Mye plass til klær.",
+    "date": "2026-09-01",
+    "is_demo_data": true
+  },
+  {
+    "id": 34,
+    "product_id": 12,
+    "author": "Wenche J.",
+    "rating": 5,
+    "title": "Hele sommeren i en sekk",
+    "text": "Var på ti dager i Sarek og sekken var behagelig hele veien.",
+    "date": "2026-07-08",
+    "is_demo_data": true
+  },
+  {
+    "id": 35,
+    "product_id": 12,
+    "author": "Leif H.",
+    "rating": 4,
+    "title": "Solid ekspedisjonssekk",
+    "text": "Mye plass og et godt ryggsystem. Litt dyrt, men holder mål.",
+    "date": "2026-08-01",
+    "is_demo_data": true
+  },
+  {
+    "id": 36,
+    "product_id": 13,
+    "author": "Ingunn S.",
+    "rating": 5,
+    "title": "Enkelt å sette opp",
+    "text": "Fem minutter, som lovet. To innganger er en luksus.",
+    "date": "2026-06-05",
+    "is_demo_data": true
+  },
+  {
+    "id": 37,
+    "product_id": 13,
+    "author": "Daniel V.",
+    "rating": 4,
+    "title": "Lett og stabilt",
+    "text": "Sto imot kraftig vind på Hardangervidda, men innerteltet er ganske lite for lange folk.",
+    "date": "2026-07-16",
+    "is_demo_data": true
+  },
+  {
+    "id": 38,
+    "product_id": 13,
+    "author": "Ane O.",
+    "rating": 5,
+    "title": "Min beste teltinvestering",
+    "text": "Tørt og lett. Forrommene er akkurat store nok for sekkene.",
+    "date": "2026-08-25",
+    "is_demo_data": true
+  },
+  {
+    "id": 39,
+    "product_id": 14,
+    "author": "Frode P.",
+    "rating": 4,
+    "title": "Romslig for familien",
+    "text": "Plass til oss fire og alt utstyret. Litt tungt å bære, men vi bruker bil.",
+    "date": "2026-07-04",
+    "is_demo_data": true
+  },
+  {
+    "id": 40,
+    "product_id": 14,
+    "author": "Kine L.",
+    "rating": 5,
+    "title": "Fin campingtelt",
+    "text": "Høy takhøyde og god ventilasjon. Enkelt å sette opp med to.",
+    "date": "2026-08-09",
+    "is_demo_data": true
+  },
+  {
+    "id": 41,
+    "product_id": 14,
+    "author": "Roar M.",
+    "rating": 4,
+    "title": "Bra for prisen",
+    "text": "Ikke egnet for kraftig vind, men på campingplass fungerer det fint.",
+    "date": "2026-08-31",
+    "is_demo_data": true
+  },
+  {
+    "id": 42,
+    "product_id": 15,
+    "author": "Sofie R.",
+    "rating": 5,
+    "title": "Sover som en stein",
+    "text": "Sov varmt ved 0 grader med tynn ulltrøye. Dunet og komprimerer fint.",
+    "date": "2026-06-28",
+    "is_demo_data": true
+  },
+  {
+    "id": 43,
+    "product_id": 15,
+    "author": "Andreas N.",
+    "rating": 4,
+    "title": "Lett og god",
+    "text": "Passer bra, men jeg synes komfortverdien er litt optimistisk. Jeg fryser lett.",
+    "date": "2026-08-17",
+    "is_demo_data": true
+  },
+  {
+    "id": 44,
+    "product_id": 15,
+    "author": "Helene D.",
+    "rating": 5,
+    "title": "Fin kvalitet",
+    "text": "Lynlåsen henger ikke opp i stoffet, og hetten sitter godt.",
+    "date": "2026-09-09",
+    "is_demo_data": true
+  },
+  {
+    "id": 45,
+    "product_id": 16,
+    "author": "Bente K.",
+    "rating": 4,
+    "title": "God til hytta",
+    "text": "Varm nok til sommer og tidlig høst. Litt tung å bære.",
+    "date": "2026-05-12",
+    "is_demo_data": true
+  },
+  {
+    "id": 46,
+    "product_id": 16,
+    "author": "Gaute A.",
+    "rating": 3,
+    "title": "Ok for prisen",
+    "text": "Pakker seg stort ned, men fungerer fint til bilcamping.",
+    "date": "2026-07-07",
+    "is_demo_data": true
+  },
+  {
+    "id": 47,
+    "product_id": 17,
+    "author": "Tor-Arne H.",
+    "rating": 5,
+    "title": "Skarpt lys",
+    "text": "Lyser opp stien fint, og rødt nattlys er nyttig i teltet.",
+    "date": "2026-03-15",
+    "is_demo_data": true
+  },
+  {
+    "id": 48,
+    "product_id": 17,
+    "author": "Julie S.",
+    "rating": 4,
+    "title": "Bra hodelykt",
+    "text": "Lett og god batteritid. Ladingen tok litt lenger enn oppgitt.",
+    "date": "2026-05-27",
+    "is_demo_data": true
+  },
+  {
+    "id": 49,
+    "product_id": 17,
+    "author": "Kenneth F.",
+    "rating": 4,
+    "title": "Fin til prisen",
+    "text": "Sitter godt og gnager ikke. Knappen kan være vanskelig å finne med hansker.",
+    "date": "2026-08-12",
+    "is_demo_data": true
+  },
+  {
+    "id": 50,
+    "product_id": 18,
+    "author": "Liv B.",
+    "rating": 5,
+    "title": "Beste turstrømpene",
+    "text": "Ingen gnagsår på tre dagers tur. Myke og varme.",
+    "date": "2026-04-20",
+    "is_demo_data": true
+  },
+  {
+    "id": 51,
+    "product_id": 18,
+    "author": "Ståle J.",
+    "rating": 4,
+    "title": "Bra kvalitet",
+    "text": "Tåler mange vask. Litt trange i størrelse 44–47 for meg med brede føtter.",
+    "date": "2026-06-30",
+    "is_demo_data": true
+  },
+  {
+    "id": 52,
+    "product_id": 19,
+    "author": "Grete O.",
+    "rating": 5,
+    "title": "Lette og solide",
+    "text": "Bruker dem hver tur. Låsene holder også når jeg belaster stavene hardt.",
+    "date": "2026-05-18",
+    "is_demo_data": true
+  },
+  {
+    "id": 53,
+    "product_id": 19,
+    "author": "Mads T.",
+    "rating": 4,
+    "title": "Fine staver",
+    "text": "Korkhåndtak er behagelig. Skulle ønske de var litt kortere sammenpakket.",
+    "date": "2026-07-29",
+    "is_demo_data": true
+  },
+  {
+    "id": 54,
+    "product_id": 19,
+    "author": "Oda W.",
+    "rating": 5,
+    "title": "Nødvendig for knærne",
+    "text": "Har merket stor forskjell i nedoverbakke. Anbefales!",
+    "date": "2026-09-07",
+    "is_demo_data": true
+  },
+  {
+    "id": 55,
+    "product_id": 20,
+    "author": "Trine G.",
+    "rating": 5,
+    "title": "Holder på varmen hele dagen",
+    "text": "Kaffen var fortsatt varm etter 10 timer i sekken.",
+    "date": "2026-02-10",
+    "is_demo_data": true
+  },
+  {
+    "id": 56,
+    "product_id": 20,
+    "author": "Yngve L.",
+    "rating": 4,
+    "title": "Solid flaske",
+    "text": "Fin og tett. Lokket kunne hatt en enklere pakning å rengjøre.",
+    "date": "2026-06-14",
+    "is_demo_data": true
+  },
+  {
+    "id": 57,
+    "product_id": 20,
+    "author": "Cecilie R.",
+    "rating": 5,
+    "title": "Bra kopp",
+    "text": "Bruker den både på tur og på jobb. Ikke bruk den til brus, som de sier.",
+    "date": "2026-08-19",
+    "is_demo_data": true
+  }
+]

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card %}
+{% block title %}Ønskeliste – {{ shop_name }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold">Ønskeliste</h1>
+{% if products %}
+  <div class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+    {% for p in products %}{{ product_card(p, wishlist, '/onskeliste') }}{% endfor %}
+  </div>
+{% else %}
+  <div class="mt-6 bg-white border border-stone-200 rounded-xl p-10 text-center">
+    <p class="font-semibold">Ønskelisten din er tom.</p>
+    <p class="text-sm text-stone-500 mt-1">Trykk på hjertet på et produkt for å lagre det her.</p>
+    <a href="/produkter" class="inline-block mt-4 bg-brand-700 text-white px-5 py-2.5 rounded-lg hover:bg-brand-800">Se produkter</a>
+  </div>
+{% endif %}
+{% endblock %}

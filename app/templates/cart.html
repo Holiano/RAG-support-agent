@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Handlekurv – {{ shop_name }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold">Handlekurv</h1>
+
+{% if not cart.lines %}
+  <div class="mt-6 bg-white border border-stone-200 rounded-xl p-10 text-center">
+    <p class="font-semibold">Handlekurven din er tom.</p>
+    <a href="/produkter" class="inline-block mt-4 bg-brand-700 text-white px-5 py-2.5 rounded-lg hover:bg-brand-800">Se produkter</a>
+  </div>
+{% else %}
+<div class="mt-5 grid lg:grid-cols-[1fr_22rem] gap-6 items-start">
+  <section aria-label="Varer i handlekurven" class="space-y-3">
+    {% for l in cart.lines %}
+      <article class="bg-white border border-stone-200 rounded-xl p-3 flex gap-4">
+        <a href="/produkt/{{ l.slug }}"><img src="/bilde/produkt/{{ l.product_id }}.svg" alt="" class="w-28 rounded-lg aspect-[4/3] object-cover"></a>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between gap-2">
+            <div>
+              <a href="/produkt/{{ l.slug }}" class="font-semibold hover:text-brand-700">{{ l.name }}</a>
+              <p class="text-sm text-stone-500">{{ l.variant_label or 'Standard' }}</p>
+              {% if l.on_sale %}<span class="text-xs text-red-700 font-medium">Tilbud</span>{% endif %}
+            </div>
+            <p class="font-semibold whitespace-nowrap">{{ l.line_total | kr }}</p>
+          </div>
+          <p class="text-sm text-stone-500 mt-0.5">{{ l.unit_price | kr }} per stk.</p>
+          {% if l.quantity > l.stock %}
+            <p class="text-sm text-red-700 mt-1">Vi har bare {{ l.stock }} på lager. Reduser antallet for å bestille.</p>
+          {% endif %}
+          <div class="mt-2 flex items-center gap-4">
+            <form method="post" action="/handlekurv/oppdater" class="flex items-center gap-2" data-autosubmit>
+              <input type="hidden" name="sku" value="{{ l.sku }}">
+              <label for="q-{{ loop.index }}" class="text-sm text-stone-600">Antall</label>
+              <input id="q-{{ loop.index }}" type="number" name="quantity" value="{{ l.quantity }}" min="0" max="10" class="w-16 rounded-lg border border-stone-300 px-2 py-1">
+              <button class="text-sm text-brand-700 hover:underline">Oppdater</button>
+            </form>
+            <form method="post" action="/handlekurv/fjern"><input type="hidden" name="sku" value="{{ l.sku }}"><button class="text-sm text-red-700 hover:underline">Fjern</button></form>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+
+  <aside class="bg-white border border-stone-200 rounded-xl p-5 space-y-5 lg:sticky lg:top-32" aria-label="Oppsummering">
+    <form method="post" action="/handlekurv/frakt" data-autosubmit>
+      <fieldset>
+        <legend class="font-semibold text-sm mb-2">Frakt</legend>
+        <div class="space-y-2">
+          {% for id, m in shipping_methods.items() %}
+            <label class="flex items-start gap-2 border rounded-lg p-2.5 text-sm cursor-pointer has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+              <input type="radio" name="method" value="{{ id }}" class="mt-1" {{ 'checked' if cart.method == id }}>
+              <span class="flex-1"><span class="font-medium">{{ m.name }}</span><br><span class="text-stone-500 text-xs">{{ m.description }}</span></span>
+              <span class="font-medium whitespace-nowrap">
+                {% if m.free_eligible and cart.goods_total >= free_threshold %}<span class="text-emerald-700">Gratis</span>{% else %}{{ m.price | kr }}{% endif %}
+              </span>
+            </label>
+          {% endfor %}
+        </div>
+        <noscript><button class="mt-2 text-sm text-brand-700">Oppdater frakt</button></noscript>
+      </fieldset>
+    </form>
+
+    <div id="free-shipping">
+      {% if cart.method == 'ekspress' %}
+        <p class="text-sm text-stone-600">Ekspress er aldri gratis. Velg hentested eller hjemlevering for fri frakt over {{ free_threshold | kr }}.</p>
+      {% elif cart.qualifies_free %}
+        <p class="text-sm text-emerald-700 font-medium">Du har fått gratis frakt!</p>
+      {% else %}
+        <p class="text-sm text-stone-700">Handle for <strong>{{ cart.free_remaining | kr }}</strong> til for å få gratis frakt.</p>
+      {% endif %}
+      <div class="mt-2 h-2 rounded-full bg-stone-200 overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ cart.free_progress }}" aria-label="Framdrift mot gratis frakt">
+        <div class="h-full bg-brand-600 transition-all" style="width: {{ cart.free_progress }}%"></div>
+      </div>
+      <p class="text-xs text-stone-500 mt-1">Grensen gjelder varesummen etter rabattkode.</p>
+    </div>
+
+    <div>
+      {% if cart.code and not cart.code_error %}
+        <form method="post" action="/handlekurv/rabattkode" class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 text-sm">
+          <span>Rabattkode <strong>{{ cart.code_str }}</strong></span>
+          <button name="action" value="remove" class="text-red-700 hover:underline">Fjern</button>
+        </form>
+      {% else %}
+        {% if cart.code_error %}<p class="text-sm text-red-700 mb-2">{{ cart.code_error }}</p>{% endif %}
+        <form method="post" action="/handlekurv/rabattkode" class="flex gap-2">
+          <label for="code" class="sr-only">Rabattkode</label>
+          <input id="code" name="code" placeholder="Rabattkode" autocomplete="off" class="flex-1 min-w-0 rounded-lg border border-stone-300 px-3 py-2 text-sm uppercase">
+          <button class="px-3 py-2 rounded-lg border border-stone-300 hover:bg-stone-50 text-sm font-medium">Bruk</button>
+        </form>
+      {% endif %}
+    </div>
+
+    <dl class="text-sm space-y-1.5 border-t border-stone-200 pt-4">
+      <div class="flex justify-between"><dt>Varer ({{ cart.count }})</dt><dd>{{ cart.subtotal | kr }}</dd></div>
+      {% if cart.discount %}<div class="flex justify-between text-emerald-700"><dt>Rabatt ({{ cart.code_str }})</dt><dd>−{{ cart.discount | kr }}</dd></div>{% endif %}
+      <div class="flex justify-between"><dt>Frakt ({{ shipping_methods[cart.method].name }})</dt><dd>{% if cart.shipping == 0 %}Gratis{% else %}{{ cart.shipping | kr }}{% endif %}</dd></div>
+      <div class="flex justify-between text-base font-bold pt-2 border-t border-stone-200"><dt>Totalt</dt><dd>{{ cart.total | kr }}</dd></div>
+      <p class="text-xs text-stone-500">Inkl. mva.</p>
+    </dl>
+
+    {% if cart.stock_problems %}
+      <p class="text-sm text-red-700">Rett opp antallene som overstiger lagerbeholdningen før du går til kassen.</p>
+    {% else %}
+      <a href="/kasse" class="block text-center bg-brand-700 hover:bg-brand-800 text-white font-semibold rounded-lg py-3">Gå til kassen</a>
+    {% endif %}
+  </aside>
+</div>
+{% endif %}
+{% endblock %}

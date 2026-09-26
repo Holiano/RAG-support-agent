@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Ingrid Solberg",
+    "email": "ingrid.solberg@example.com",
+    "password": "demo123",
+    "address": {
+      "street": "Havnegata 14",
+      "postal_code": "5700",
+      "city": "Voss"
+    },
+    "created_at": "2025-11-04"
+  },
+  {
+    "id": 2,
+    "name": "Ola Kvamme",
+    "email": "ola.kvamme@example.com",
+    "password": "demo123",
+    "address": {
+      "street": "Sagveien 23 B",
+      "postal_code": "0458",
+      "city": "Oslo"
+    },
+    "created_at": "2026-01-18"
+  },
+  {
+    "id": 3,
+    "name": "Marte Haugland",
+    "email": "marte.haugland@example.com",
+    "password": "demo123",
+    "address": {
+      "street": "Nedre Bakklandet 9",
+      "postal_code": "7013",
+      "city": "Trondheim"
+    },
+    "created_at": "2026-03-02"
+  },
+  {
+    "id": 4,
+    "name": "Sindre Nilsen",
+    "email": "sindre.nilsen@example.com",
+    "password": "demo123",
+    "address": {
+      "street": "Storgata 51",
+      "postal_code": "9008",
+      "city": "Tromsø"
+    },
+    "created_at": "2026-05-27"
+  },
+  {
+    "id": 5,
+    "name": "Hilde Berge",
+    "email": "hilde.berge@example.com",
+    "password": "demo123",
+    "address": {
+      "street": "Markens gate 30",
+      "postal_code": "4611",
+      "city": "Kristiansand"
+    },
+    "created_at": "2026-04-09"
+  }
+]

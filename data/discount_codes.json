@@ -1,0 +1,32 @@
+[
+  {
+    "code": "VELKOMMEN10",
+    "type": "percent",
+    "value": 10,
+    "min_subtotal": 0,
+    "valid_from": "2026-01-01",
+    "valid_to": "2026-12-31",
+    "excludes_sale_items": true,
+    "description": "10 % rabatt på varer til ordinær pris. Gjelder ikke varer på tilbud."
+  },
+  {
+    "code": "SOMMAR200",
+    "type": "fixed",
+    "value": 200,
+    "min_subtotal": 1500,
+    "valid_from": "2026-06-01",
+    "valid_to": "2026-10-31",
+    "excludes_sale_items": false,
+    "description": "200 kr rabatt ved varekjøp på minst 1 500 kr (etter tilbudspriser, før rabatt)."
+  },
+  {
+    "code": "VAR2026",
+    "type": "percent",
+    "value": 15,
+    "min_subtotal": 0,
+    "valid_from": "2026-03-01",
+    "valid_to": "2026-05-31",
+    "excludes_sale_items": true,
+    "description": "15 % vårrabatt på varer til ordinær pris. Kampanjen er avsluttet."
+  }
+]

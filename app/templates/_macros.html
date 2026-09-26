@@ -1,0 +1,53 @@
+{% macro stars(rating, size='text-base') %}
+  {% if rating is not none %}
+  <span class="inline-flex text-amber-500 {{ size }}" aria-label="{{ rating }} av 5">
+    {% for i in range(1, 6) %}{% if rating >= i - 0.25 %}★{% else %}<span class="text-stone-300">★</span>{% endif %}{% endfor %}
+  </span>
+  {% endif %}
+{% endmacro %}
+
+{% macro price(p, big=False) %}
+  <span class="{{ 'text-2xl' if big else 'text-base' }} font-bold {{ 'text-red-700' if p.on_sale else 'text-stone-900' }}">{{ p.eff_price | kr }}</span>
+  {% if p.on_sale %}<span class="text-sm text-stone-500 line-through ml-1">{{ p.price | kr }}</span>{% endif %}
+{% endmacro %}
+
+{% macro stock_badge(key, text) %}
+  <span class="inline-flex items-center gap-1.5 text-xs font-medium
+    {% if key == 'ok' %}text-emerald-700{% elif key == 'low' %}text-amber-700{% else %}text-stone-500{% endif %}">
+    <span class="w-2 h-2 rounded-full {% if key == 'ok' %}bg-emerald-500{% elif key == 'low' %}bg-amber-500{% else %}bg-stone-400{% endif %}"></span>{{ text }}
+  </span>
+{% endmacro %}
+
+{% macro wish_button(product_id, wishlist, next_url) %}
+  <form method="post" action="/onskeliste/{{ product_id }}">
+    <input type="hidden" name="next" value="{{ next_url }}">
+    <button type="submit" class="w-9 h-9 rounded-full bg-white/90 hover:bg-white shadow flex items-center justify-center text-lg leading-none {{ 'text-red-600' if product_id in wishlist else 'text-stone-400 hover:text-red-500' }}"
+            aria-label="{{ 'Fjern fra ønskelisten' if product_id in wishlist else 'Legg til i ønskelisten' }}" title="{{ 'Fjern fra ønskelisten' if product_id in wishlist else 'Legg til i ønskelisten' }}">
+      {{ '♥' if product_id in wishlist else '♡' }}
+    </button>
+  </form>
+{% endmacro %}
+
+{% macro product_card(p, wishlist, next_url) %}
+  <article class="group bg-white rounded-xl border border-stone-200 overflow-hidden hover:shadow-md transition flex flex-col">
+    <div class="relative">
+      <a href="/produkt/{{ p.slug }}" aria-label="{{ p.name }}">
+        <img src="/bilde/produkt/{{ p.id }}.svg" alt="" loading="lazy" class="w-full aspect-[4/3] object-cover {{ 'opacity-60' if not p.in_stock }}">
+      </a>
+      {% if p.on_sale %}<span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-0.5 rounded">Tilbud</span>{% endif %}
+      <div class="absolute top-2 right-2">{{ wish_button(p.id, wishlist, next_url) }}</div>
+    </div>
+    <div class="p-3 flex flex-col gap-1 flex-1">
+      <p class="text-xs uppercase tracking-wide text-stone-500">{{ p.category_label }}</p>
+      <h3 class="font-semibold leading-snug"><a href="/produkt/{{ p.slug }}" class="hover:text-brand-700">{{ p.name }}</a></h3>
+      <p class="text-sm text-stone-600 line-clamp-2">{{ p.short_description }}</p>
+      <div class="mt-auto pt-2 flex items-center justify-between gap-2">
+        <div>{{ price(p) }}</div>
+        {{ stock_badge(p.stock_key, p.stock_text) }}
+      </div>
+      {% if p.avg_rating is not none %}
+        <div class="text-xs text-stone-500 flex items-center gap-1">{{ stars(p.avg_rating, 'text-sm') }} <span>({{ p.review_count }})</span></div>
+      {% endif %}
+    </div>
+  </article>
+{% endmacro %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} – {{ shop_name }}{% endblock %}
+{% block content %}
+<div class="grid lg:grid-cols-[15rem_1fr] gap-8 items-start">
+  <nav class="bg-white border border-stone-200 rounded-xl p-3 text-sm lg:sticky lg:top-32" aria-label="Infosider">
+    <p class="px-2 py-1 font-semibold text-stone-500 text-xs uppercase tracking-wide">Informasjon</p>
+    <ul>
+      {% for d in doc_links %}
+        <li><a href="/info/{{ d.slug }}" class="block px-2 py-1.5 rounded {{ 'bg-brand-50 text-brand-800 font-medium' if d.slug == slug else 'hover:bg-stone-100' }}">{{ d.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <article class="bg-white border border-stone-200 rounded-xl p-6 md:p-8 doc-content prose prose-stone max-w-none">
+    {{ content | safe }}
+  </article>
+</div>
+{% endblock %}

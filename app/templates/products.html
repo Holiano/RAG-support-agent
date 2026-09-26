@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% from "_macros.html" import product_card %}
+{% block title %}{{ category_labels.get(category, 'Alle produkter') }} – {{ shop_name }}{% endblock %}
+{% block content %}
+{% set current_url = request.url.path ~ ('?' ~ request.url.query if request.url.query else '') %}
+
+<div class="flex flex-wrap items-end justify-between gap-3">
+  <div>
+    <h1 class="text-2xl font-bold">{{ category_labels.get(category, 'Alle produkter') }}</h1>
+    <p class="text-sm text-stone-500" id="result-count">{{ products | length }} av {{ total }} produkter{% if q %} for «{{ q }}»{% endif %}</p>
+  </div>
+</div>
+
+<div class="mt-5 grid lg:grid-cols-[16rem_1fr] gap-6">
+  <form method="get" action="/produkter" class="bg-white border border-stone-200 rounded-xl p-4 space-y-5 h-fit text-sm" id="filter-form">
+    <div>
+      <label for="q" class="font-semibold block mb-1">Søk</label>
+      <input id="q" type="search" name="q" value="{{ q }}" placeholder="Navn, SKU, beskrivelse"
+             class="w-full rounded-lg border border-stone-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-500">
+    </div>
+
+    <fieldset>
+      <legend class="font-semibold mb-1">Kategori</legend>
+      <label class="flex items-center gap-2 py-0.5"><input type="radio" name="kategori" value="" {{ 'checked' if not category }}> Alle</label>
+      {% for slug, label, _ in categories %}
+        <label class="flex items-center gap-2 py-0.5"><input type="radio" name="kategori" value="{{ slug }}" {{ 'checked' if category == slug }}> {{ label }}</label>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset>
+      <legend class="font-semibold mb-1">Pris (kr)</legend>
+      <div class="flex items-center gap-2">
+        <input type="number" min="0" name="min" value="{{ min_price if min_price is not none }}" placeholder="Fra" aria-label="Laveste pris"
+               class="w-full rounded-lg border border-stone-300 px-2 py-1.5">
+        <span>–</span>
+        <input type="number" min="0" name="maks" value="{{ max_price if max_price is not none }}" placeholder="Til" aria-label="Høyeste pris"
+               class="w-full rounded-lg border border-stone-300 px-2 py-1.5">
+      </div>
+    </fieldset>
+
+    <fieldset class="space-y-1">
+      <legend class="font-semibold mb-1">Vis bare</legend>
+      <label class="flex items-center gap-2"><input type="checkbox" name="pa_lager" value="1" {{ 'checked' if in_stock }}> På lager</label>
+      <label class="flex items-center gap-2"><input type="checkbox" name="tilbud" value="1" {{ 'checked' if on_sale }}> På tilbud</label>
+    </fieldset>
+
+    <div>
+      <label for="sorter" class="font-semibold block mb-1">Sorter etter</label>
+      <select id="sorter" name="sorter" class="w-full rounded-lg border border-stone-300 px-2 py-2 bg-white">
+        {% for key, label in sorts %}<option value="{{ key }}" {{ 'selected' if sort == key }}>{{ label }}</option>{% endfor %}
+      </select>
+    </div>
+
+    <div class="flex gap-2">
+      <button class="flex-1 bg-brand-700 hover:bg-brand-800 text-white rounded-lg py-2 font-medium">Bruk filter</button>
+      <a href="/produkter" class="px-3 py-2 rounded-lg border border-stone-300 hover:bg-stone-50">Nullstill</a>
+    </div>
+  </form>
+
+  <section aria-label="Produkter">
+    {% if products %}
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {% for p in products %}{{ product_card(p, wishlist, current_url) }}{% endfor %}
+      </div>
+    {% else %}
+      <div class="bg-white border border-stone-200 rounded-xl p-10 text-center">
+        <p class="font-semibold">Ingen produkter matcher søket ditt.</p>
+        <p class="text-sm text-stone-500 mt-1">Prøv å fjerne noen filtre eller søke på noe annet.</p>
+        <a href="/produkter" class="inline-block mt-4 text-brand-700 hover:underline">Vis alle produkter</a>
+      </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

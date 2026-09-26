@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ shop_name }}{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: {
+        50: '#f1f7f3', 100: '#dcebe1', 200: '#b9d6c4', 500: '#3f7d5c', 600: '#2f6448', 700: '#254f3a', 800: '#1d3f2e', 900: '#142c20'
+      } } } }
+    }
+  </script>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex flex-col">
+
+  <div class="bg-amber-100 text-amber-900 text-xs text-center py-1.5 border-b border-amber-200" role="note">
+    Demobutikk. Ingen ekte kjøp.
+  </div>
+
+  <header class="bg-white border-b border-stone-200 sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+      <a href="/" class="flex items-center gap-2 shrink-0" aria-label="{{ shop_name }} forside">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="#254f3a"/><path d="M5 26 L14 11 L19 19 L22 15 L29 26 Z" fill="#fff"/><circle cx="24" cy="9" r="2.5" fill="#f5b942"/></svg>
+        <span class="font-bold text-lg text-brand-800 leading-none">Vindhamar<br><span class="font-medium text-stone-500 text-xs tracking-wide uppercase">Friluft</span></span>
+      </a>
+
+      <form action="/produkter" method="get" class="flex-1 max-w-xl hidden sm:flex" role="search">
+        <input type="search" name="q" value="{{ q | default('') }}" placeholder="Søk etter jakker, sko, telt …" aria-label="Søk i butikken"
+               class="w-full rounded-l-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <button class="rounded-r-lg bg-brand-700 hover:bg-brand-800 text-white px-4 text-sm font-medium">Søk</button>
+      </form>
+
+      <nav class="ml-auto flex items-center gap-1 text-sm" aria-label="Hovedmeny">
+        <a href="/sporing" class="px-2 py-2 rounded hover:bg-stone-100 hidden md:block">Ordresporing</a>
+        <a href="/onskeliste" class="px-2 py-2 rounded hover:bg-stone-100">Ønskeliste</a>
+        {% if user %}
+          <a href="/mine-sider" class="px-2 py-2 rounded hover:bg-stone-100 font-medium">Mine sider</a>
+        {% else %}
+          <a href="/logg-inn" class="px-2 py-2 rounded hover:bg-stone-100">Logg inn</a>
+        {% endif %}
+        <a href="/handlekurv" class="ml-1 relative inline-flex items-center gap-2 bg-brand-700 hover:bg-brand-800 text-white px-3 py-2 rounded-lg font-medium">
+          Handlekurv
+          <span id="cart-count" class="bg-white text-brand-800 text-xs rounded-full min-w-5 h-5 px-1.5 inline-flex items-center justify-center">{{ cart_count }}</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="border-t border-stone-100 bg-white">
+      <div class="max-w-7xl mx-auto px-4 flex items-center gap-1 overflow-x-auto text-sm">
+        <a href="/produkter" class="px-3 py-2 whitespace-nowrap hover:text-brand-700">Alle produkter</a>
+        {% for slug, label, _ in categories %}
+          <a href="/produkter?kategori={{ slug }}" class="px-3 py-2 whitespace-nowrap hover:text-brand-700">{{ label }}</a>
+        {% endfor %}
+        <a href="/produkter?tilbud=1" class="px-3 py-2 whitespace-nowrap text-red-700 font-medium hover:underline">Tilbud</a>
+      </div>
+    </div>
+  </header>
+
+  {% if flashes %}
+  <div class="max-w-7xl mx-auto w-full px-4 mt-4 space-y-2">
+    {% for f in flashes %}
+      <div class="rounded-lg px-4 py-3 text-sm border
+        {% if f.kind == 'error' %}bg-red-50 border-red-200 text-red-800
+        {% elif f.kind == 'success' %}bg-emerald-50 border-emerald-200 text-emerald-800
+        {% else %}bg-sky-50 border-sky-200 text-sky-800{% endif %}" role="status">{{ f.text }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-brand-900 text-brand-100 mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+      <div>
+        <p class="font-bold text-white text-base">{{ shop_name }}</p>
+        <p class="mt-2 text-brand-200">Utstyr til turer i skog og fjell. Nettbutikk med lager i Førde.</p>
+        <p class="mt-3 text-xs text-amber-200">Demobutikk. Ingen ekte kjøp.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-white">Handle</p>
+        <ul class="mt-2 space-y-1.5">
+          {% for slug, label, _ in categories %}<li><a class="hover:underline" href="/produkter?kategori={{ slug }}">{{ label }}</a></li>{% endfor %}
+          <li><a class="hover:underline" href="/produkter?tilbud=1">Tilbud</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white">Kundeservice og informasjon</p>
+        <ul class="mt-2 space-y-1.5">
+          {% for d in doc_links %}<li><a class="hover:underline" href="/info/{{ d.slug }}">{{ d.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white">Min konto</p>
+        <ul class="mt-2 space-y-1.5">
+          <li><a class="hover:underline" href="/mine-sider">Mine sider</a></li>
+          <li><a class="hover:underline" href="/sporing">Ordresporing</a></li>
+          <li><a class="hover:underline" href="/onskeliste">Ønskeliste</a></li>
+          <li><a class="hover:underline" href="/handlekurv">Handlekurv</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-brand-800 text-center text-xs text-brand-200 py-4">
+      © 2026 Vindhamar Friluft AS (oppdiktet demobutikk). Produkter, anmeldelser og kunder er demodata.
+    </div>
+  </footer>
+
+  <div id="chat-root"></div>
+  <script src="/static/js/chat.js" defer></script>
+  <script src="/static/js/app.js" defer></script>
+</body>
+</html>

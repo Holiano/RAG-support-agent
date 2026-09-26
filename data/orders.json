@@ -1,0 +1,870 @@
+[
+  {
+    "order_number": "VH-10001",
+    "customer_id": 1,
+    "email": "ingrid.solberg@example.com",
+    "created_at": "2026-06-03T10:14",
+    "status": "levert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 3339,
+    "total": 3339,
+    "tracking_number": "370404180856914NO",
+    "shipping_address": {
+      "name": "Ingrid Solberg",
+      "street": "Havnegata 14",
+      "postal_code": "5700",
+      "city": "Voss"
+    },
+    "lines": [
+      {
+        "product_id": 1,
+        "sku": "VH-JAK-1001-M-FJO",
+        "name": "Skarven Skaljakke herre",
+        "variant_label": "M / Fjordblå",
+        "quantity": 1,
+        "unit_price": 2990
+      },
+      {
+        "product_id": 18,
+        "sku": "VH-TIL-6002-40-43-GRA",
+        "name": "Ullsokk Tur 3-pakning",
+        "variant_label": "40-43 / Grå",
+        "quantity": 1,
+        "unit_price": 349
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-06-03T10:14",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-06-03T13:40",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-06-04T09:20",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-06-08T13:05",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10002",
+    "customer_id": 2,
+    "email": "ola.kvamme@example.com",
+    "created_at": "2026-06-12T18:22",
+    "status": "levert",
+    "shipping_method": "hentested",
+    "shipping_cost": 49,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 689,
+    "total": 738,
+    "tracking_number": "370493235042136NO",
+    "shipping_address": {
+      "name": "Ola Kvamme",
+      "street": "Sagveien 23 B",
+      "postal_code": "0458",
+      "city": "Oslo"
+    },
+    "lines": [
+      {
+        "product_id": 17,
+        "sku": "VH-TIL-6001-SVA",
+        "name": "Glimt Hodelykt 400",
+        "variant_label": "Svart",
+        "quantity": 1,
+        "unit_price": 390
+      },
+      {
+        "product_id": 20,
+        "sku": "VH-TIL-6004-STA",
+        "name": "Varm Termoflaske 0,75 L",
+        "variant_label": "Stål",
+        "quantity": 1,
+        "unit_price": 299
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-06-12T18:22",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-06-15T08:30",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-06-15T14:10",
+        "note": "Sendt til hentested."
+      },
+      {
+        "status": "levert",
+        "at": "2026-06-18T10:45",
+        "note": "Hentet av kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10003",
+    "customer_id": 3,
+    "email": "marte.haugland@example.com",
+    "created_at": "2026-06-20T09:05",
+    "status": "levert",
+    "shipping_method": "ekspress",
+    "shipping_cost": 199,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 1690,
+    "total": 1889,
+    "tracking_number": "370458415928923NO",
+    "shipping_address": {
+      "name": "Marte Haugland",
+      "street": "Nedre Bakklandet 9",
+      "postal_code": "7013",
+      "city": "Trondheim"
+    },
+    "lines": [
+      {
+        "product_id": 6,
+        "sku": "VH-SKO-2002-40",
+        "name": "Heia Tursko lav",
+        "variant_label": "40",
+        "quantity": 1,
+        "unit_price": 1690
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-06-20T09:05",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-06-22T07:50",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-06-22T11:30",
+        "note": "Sendt med ekspress."
+      },
+      {
+        "status": "levert",
+        "at": "2026-06-23T12:15",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10004",
+    "customer_id": 4,
+    "email": "sindre.nilsen@example.com",
+    "created_at": "2026-07-02T11:47",
+    "status": "levert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": "VELKOMMEN10",
+    "discount_amount": 708,
+    "subtotal": 7080,
+    "total": 6372,
+    "tracking_number": "370476424384219NO",
+    "shipping_address": {
+      "name": "Sindre Nilsen",
+      "street": "Storgata 51",
+      "postal_code": "9008",
+      "city": "Tromsø"
+    },
+    "lines": [
+      {
+        "product_id": 13,
+        "sku": "VH-TEL-4001-ORA",
+        "name": "Tindra 2 Telt",
+        "variant_label": "Oransje",
+        "quantity": 1,
+        "unit_price": 4490
+      },
+      {
+        "product_id": 15,
+        "sku": "VH-SOV-5001-Regular-BLA",
+        "name": "Nattro Dunsovepose −8",
+        "variant_label": "Regular / Blå",
+        "quantity": 1,
+        "unit_price": 2590
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-07-02T11:47",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-07-02T13:20",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-07-03T10:00",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-07-08T14:32",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10005",
+    "customer_id": 5,
+    "email": "hilde.berge@example.com",
+    "created_at": "2026-07-09T14:31",
+    "status": "refundert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2490,
+    "total": 2490,
+    "tracking_number": "370470588082844NO",
+    "shipping_address": {
+      "name": "Hilde Berge",
+      "street": "Markens gate 30",
+      "postal_code": "4611",
+      "city": "Kristiansand"
+    },
+    "lines": [
+      {
+        "product_id": 5,
+        "sku": "VH-SKO-2001-43",
+        "name": "Storhaugen Vandrestøvel",
+        "variant_label": "43",
+        "quantity": 1,
+        "unit_price": 2490
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-07-09T14:31",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-07-10T08:15",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-07-10T15:00",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-07-14T11:20",
+        "note": "Levert til kunde."
+      },
+      {
+        "status": "retur_under_behandling",
+        "at": "2026-07-20T09:40",
+        "note": "Kunden har meldt retur (angrer). Returetikett sendt på e-post."
+      },
+      {
+        "status": "retur_under_behandling",
+        "at": "2026-07-27T10:05",
+        "note": "Retur mottatt på lager og kontrollert. Varen er ubrukt."
+      },
+      {
+        "status": "refundert",
+        "at": "2026-08-03T09:00",
+        "note": "Refundert 2 401 kr (2 490 kr minus returfrakt 89 kr) til opprinnelig betalingsmetode."
+      }
+    ],
+    "refund_amount": 2401
+  },
+  {
+    "order_number": "VH-10006",
+    "customer_id": 1,
+    "email": "ingrid.solberg@example.com",
+    "created_at": "2026-07-18T20:05",
+    "status": "kansellert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2490,
+    "total": 2490,
+    "tracking_number": null,
+    "shipping_address": {
+      "name": "Ingrid Solberg",
+      "street": "Havnegata 14",
+      "postal_code": "5700",
+      "city": "Voss"
+    },
+    "lines": [
+      {
+        "product_id": 3,
+        "sku": "VH-JAK-1003-M-SEN",
+        "name": "Dunfjell Dunjakke",
+        "variant_label": "M / Sennepsgul",
+        "quantity": 1,
+        "unit_price": 2490
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-07-18T20:05",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "kansellert",
+        "at": "2026-07-19T08:12",
+        "note": "Kansellert på kundens ønske før pakking. Reservert beløp er frigitt."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10007",
+    "customer_id": 2,
+    "email": "ola.kvamme@example.com",
+    "created_at": "2026-07-30T09:33",
+    "status": "levert",
+    "shipping_method": "hentested",
+    "shipping_cost": 0,
+    "discount_code": "SOMMAR200",
+    "discount_amount": 200,
+    "subtotal": 2680,
+    "total": 2480,
+    "tracking_number": "370456481042560NO",
+    "shipping_address": {
+      "name": "Ola Kvamme",
+      "street": "Sagveien 23 B",
+      "postal_code": "0458",
+      "city": "Oslo"
+    },
+    "lines": [
+      {
+        "product_id": 10,
+        "sku": "VH-SEK-3002-ML-BLA",
+        "name": "Fjellrunden 38",
+        "variant_label": "M/L / Blå",
+        "quantity": 1,
+        "unit_price": 1690
+      },
+      {
+        "product_id": 19,
+        "sku": "VH-TIL-6003-110-135cm",
+        "name": "Stavene Trekkingstavar Karbon",
+        "variant_label": "110-135 cm",
+        "quantity": 1,
+        "unit_price": 990
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-07-30T09:33",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-07-30T12:10",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-07-31T09:45",
+        "note": "Sendt til hentested."
+      },
+      {
+        "status": "levert",
+        "at": "2026-08-04T16:20",
+        "note": "Hentet av kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10008",
+    "customer_id": 3,
+    "email": "marte.haugland@example.com",
+    "created_at": "2026-08-05T16:50",
+    "status": "levert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 1880,
+    "total": 1880,
+    "tracking_number": "370410381478789NO",
+    "shipping_address": {
+      "name": "Marte Haugland",
+      "street": "Nedre Bakklandet 9",
+      "postal_code": "7013",
+      "city": "Trondheim"
+    },
+    "lines": [
+      {
+        "product_id": 4,
+        "sku": "VH-JAK-1004-L-GRA",
+        "name": "Lia Fleecejakke herre",
+        "variant_label": "L / Grafitt",
+        "quantity": 1,
+        "unit_price": 690
+      },
+      {
+        "product_id": 2,
+        "sku": "VH-JAK-1002-S-SKO",
+        "name": "Ryggen Regnjakke dame",
+        "variant_label": "S / Skogsgrønn",
+        "quantity": 1,
+        "unit_price": 1190
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-08-05T16:50",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-08-06T08:00",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-08-06T13:30",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-08-10T11:05",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10009",
+    "customer_id": 4,
+    "email": "sindre.nilsen@example.com",
+    "created_at": "2026-08-14T12:02",
+    "status": "levert",
+    "shipping_method": "hentested",
+    "shipping_cost": 49,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 1088,
+    "total": 1137,
+    "tracking_number": "370487398748859NO",
+    "shipping_address": {
+      "name": "Sindre Nilsen",
+      "street": "Storgata 51",
+      "postal_code": "9008",
+      "city": "Tromsø"
+    },
+    "lines": [
+      {
+        "product_id": 18,
+        "sku": "VH-TIL-6002-44-47-GRA",
+        "name": "Ullsokk Tur 3-pakning",
+        "variant_label": "44-47 / Grå",
+        "quantity": 2,
+        "unit_price": 349
+      },
+      {
+        "product_id": 17,
+        "sku": "VH-TIL-6001-ROD",
+        "name": "Glimt Hodelykt 400",
+        "variant_label": "Rød",
+        "quantity": 1,
+        "unit_price": 390
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-08-14T12:02",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-08-14T13:15",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-08-14T15:40",
+        "note": "Sendt til hentested."
+      },
+      {
+        "status": "levert",
+        "at": "2026-08-21T09:50",
+        "note": "Hentet av kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10010",
+    "customer_id": 5,
+    "email": "hilde.berge@example.com",
+    "created_at": "2026-08-22T10:40",
+    "status": "levert",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2989,
+    "total": 2989,
+    "tracking_number": "370409975652679NO",
+    "shipping_address": {
+      "name": "Hilde Berge",
+      "street": "Markens gate 30",
+      "postal_code": "4611",
+      "city": "Kristiansand"
+    },
+    "lines": [
+      {
+        "product_id": 12,
+        "sku": "VH-SEK-3004-ML-SKO",
+        "name": "Ekspedisjon 65",
+        "variant_label": "M/L / Skogsgrønn",
+        "quantity": 1,
+        "unit_price": 2690
+      },
+      {
+        "product_id": 20,
+        "sku": "VH-TIL-6004-STA",
+        "name": "Varm Termoflaske 0,75 L",
+        "variant_label": "Stål",
+        "quantity": 1,
+        "unit_price": 299
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-08-22T10:40",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-08-24T08:20",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-08-24T14:00",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-08-27T12:30",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10011",
+    "customer_id": 1,
+    "email": "ingrid.solberg@example.com",
+    "created_at": "2026-08-28T19:15",
+    "status": "retur_under_behandling",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2790,
+    "total": 2790,
+    "tracking_number": "370405583596091NO",
+    "shipping_address": {
+      "name": "Ingrid Solberg",
+      "street": "Havnegata 14",
+      "postal_code": "5700",
+      "city": "Voss"
+    },
+    "lines": [
+      {
+        "product_id": 8,
+        "sku": "VH-SKO-2004-39",
+        "name": "Frost Vintersko",
+        "variant_label": "39",
+        "quantity": 1,
+        "unit_price": 2790
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-08-28T19:15",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-08-31T08:10",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-08-31T15:25",
+        "note": "Sendt med hjemlevering."
+      },
+      {
+        "status": "levert",
+        "at": "2026-09-02T12:00",
+        "note": "Levert til kunde."
+      },
+      {
+        "status": "retur_under_behandling",
+        "at": "2026-09-15T10:30",
+        "note": "Kunden har meldt retur (skoene var for trange). Returetikett sendt. Returfrakt på 89 kr trekkes fra refusjonen."
+      },
+      {
+        "status": "retur_under_behandling",
+        "at": "2026-09-22T13:45",
+        "note": "Retur mottatt på lager. Varen kontrolleres."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10012",
+    "customer_id": 3,
+    "email": "marte.haugland@example.com",
+    "created_at": "2026-09-08T10:25",
+    "status": "levert",
+    "shipping_method": "ekspress",
+    "shipping_cost": 199,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2980,
+    "total": 3179,
+    "tracking_number": "370433425894579NO",
+    "shipping_address": {
+      "name": "Marte Haugland",
+      "street": "Nedre Bakklandet 9",
+      "postal_code": "7013",
+      "city": "Trondheim"
+    },
+    "lines": [
+      {
+        "product_id": 15,
+        "sku": "VH-SOV-5001-Long-BLA",
+        "name": "Nattro Dunsovepose −8",
+        "variant_label": "Long / Blå",
+        "quantity": 1,
+        "unit_price": 2590
+      },
+      {
+        "product_id": 17,
+        "sku": "VH-TIL-6001-SVA",
+        "name": "Glimt Hodelykt 400",
+        "variant_label": "Svart",
+        "quantity": 1,
+        "unit_price": 390
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-09-08T10:25",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-09-08T11:30",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-09-08T13:50",
+        "note": "Sendt med ekspress."
+      },
+      {
+        "status": "levert",
+        "at": "2026-09-09T13:10",
+        "note": "Levert til kunde."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10013",
+    "customer_id": 2,
+    "email": "ola.kvamme@example.com",
+    "created_at": "2026-09-23T16:40",
+    "status": "sendt",
+    "shipping_method": "hentested",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 3180,
+    "total": 3180,
+    "tracking_number": "370444007794856NO",
+    "shipping_address": {
+      "name": "Ola Kvamme",
+      "street": "Sagveien 23 B",
+      "postal_code": "0458",
+      "city": "Oslo"
+    },
+    "lines": [
+      {
+        "product_id": 11,
+        "sku": "VH-SEK-3003-ML-BUR",
+        "name": "Toppturen 45",
+        "variant_label": "M/L / Burgunder",
+        "quantity": 1,
+        "unit_price": 2190
+      },
+      {
+        "product_id": 19,
+        "sku": "VH-TIL-6003-100-125cm",
+        "name": "Stavene Trekkingstavar Karbon",
+        "variant_label": "100-125 cm",
+        "quantity": 1,
+        "unit_price": 990
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-09-23T16:40",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-09-24T08:05",
+        "note": ""
+      },
+      {
+        "status": "sendt",
+        "at": "2026-09-24T14:15",
+        "note": "Sendt til hentested."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10014",
+    "customer_id": 4,
+    "email": "sindre.nilsen@example.com",
+    "created_at": "2026-09-24T15:48",
+    "status": "under_pakking",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 2839,
+    "total": 2839,
+    "tracking_number": null,
+    "shipping_address": {
+      "name": "Sindre Nilsen",
+      "street": "Storgata 51",
+      "postal_code": "9008",
+      "city": "Tromsø"
+    },
+    "lines": [
+      {
+        "product_id": 5,
+        "sku": "VH-SKO-2001-44",
+        "name": "Storhaugen Vandrestøvel",
+        "variant_label": "44",
+        "quantity": 1,
+        "unit_price": 2490
+      },
+      {
+        "product_id": 18,
+        "sku": "VH-TIL-6002-44-47-GRA",
+        "name": "Ullsokk Tur 3-pakning",
+        "variant_label": "44-47 / Grå",
+        "quantity": 1,
+        "unit_price": 349
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-09-24T15:48",
+        "note": "Bestillingen er mottatt."
+      },
+      {
+        "status": "under_pakking",
+        "at": "2026-09-25T08:30",
+        "note": "Varene plukkes og pakkes."
+      }
+    ],
+    "refund_amount": null
+  },
+  {
+    "order_number": "VH-10015",
+    "customer_id": 5,
+    "email": "hilde.berge@example.com",
+    "created_at": "2026-09-25T17:20",
+    "status": "mottatt",
+    "shipping_method": "hjemlevering",
+    "shipping_cost": 0,
+    "discount_code": null,
+    "discount_amount": 0,
+    "subtotal": 1289,
+    "total": 1289,
+    "tracking_number": null,
+    "shipping_address": {
+      "name": "Hilde Berge",
+      "street": "Markens gate 30",
+      "postal_code": "4611",
+      "city": "Kristiansand"
+    },
+    "lines": [
+      {
+        "product_id": 9,
+        "sku": "VH-SEK-3001-ORA",
+        "name": "Dagsturen 22",
+        "variant_label": "Oransje",
+        "quantity": 1,
+        "unit_price": 990
+      },
+      {
+        "product_id": 20,
+        "sku": "VH-TIL-6004-BLA",
+        "name": "Varm Termoflaske 0,75 L",
+        "variant_label": "Blå",
+        "quantity": 1,
+        "unit_price": 299
+      }
+    ],
+    "status_history": [
+      {
+        "status": "mottatt",
+        "at": "2026-09-25T17:20",
+        "note": "Bestillingen er mottatt."
+      }
+    ],
+    "refund_amount": null
+  }
+]

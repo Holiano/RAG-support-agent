@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Ordre {{ order.order_number }} – {{ shop_name }}{% endblock %}
+{% block content %}
+<nav class="text-sm text-stone-500 mb-2"><a href="/mine-sider" class="hover:underline">Mine sider</a> / Ordre</nav>
+<h1 class="text-2xl font-bold mb-3">Ordre <span class="font-mono">{{ order.order_number }}</span></h1>
+{% set show_address = true %}
+{% include "_order.html" %}
+{% endblock %}
