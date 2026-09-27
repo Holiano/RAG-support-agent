@@ -35,16 +35,93 @@
     if (open) input.focus();
   }
 
+  function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function inlineFormat(s) {
+    s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/`([^`]+?)`/g, '<code class="bg-stone-100 rounded px-1 py-0.5 text-xs">$1</code>');
+    return s;
+  }
+
+  // Enkel, trygg markdown-tolkning av svar fra agenten: fet skrift, kode, lister og avsnitt.
+  // All tekst rømmes (escapeHtml) før noen tagger legges til, så innhold fra agenten kan aldri
+  // injisere HTML.
+  function renderMarkdownLite(raw) {
+    const lines = escapeHtml(raw).split("\n");
+    const out = [];
+    let para = [];
+    let i = 0;
+
+    function flushPara() {
+      if (para.length) {
+        out.push('<p class="mb-1 last:mb-0">' + para.map(inlineFormat).join("<br>") + "</p>");
+        para = [];
+      }
+    }
+
+    while (i < lines.length) {
+      const trimmed = lines[i].trim();
+
+      if (trimmed === "") { flushPara(); i++; continue; }
+
+      const heading = trimmed.match(/^#{1,6}\s+(.*)$/);
+      if (heading) {
+        flushPara();
+        out.push('<p class="font-semibold mt-2 mb-1">' + inlineFormat(heading[1]) + "</p>");
+        i++; continue;
+      }
+
+      if (/^[-*]\s+/.test(trimmed)) {
+        flushPara();
+        const items = [];
+        while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
+          items.push(lines[i].trim().replace(/^[-*]\s+/, ""));
+          i++;
+        }
+        out.push('<ul class="list-disc pl-4 my-1 space-y-0.5">'
+          + items.map((t) => "<li>" + inlineFormat(t) + "</li>").join("") + "</ul>");
+        continue;
+      }
+
+      if (/^\d+\.\s+/.test(trimmed)) {
+        flushPara();
+        const items = [];
+        while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+          items.push(lines[i].trim().replace(/^\d+\.\s+/, ""));
+          i++;
+        }
+        out.push('<ol class="list-decimal pl-4 my-1 space-y-0.5">'
+          + items.map((t) => "<li>" + inlineFormat(t) + "</li>").join("") + "</ol>");
+        continue;
+      }
+
+      para.push(lines[i]);
+      i++;
+    }
+    flushPara();
+    return out.join("");
+  }
+
   function addMessage(role, text) {
     const el = document.createElement("div");
     el.className = role === "user"
       ? "ml-8 bg-brand-600 text-white rounded-2xl rounded-br-sm px-3 py-2 w-fit max-w-full self-end"
       : "mr-8 bg-white border border-stone-200 rounded-2xl rounded-bl-sm px-3 py-2 w-fit max-w-full";
-    el.textContent = text;
     el.dataset.role = role;
+    setMessageText(el, text);
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
     return el;
+  }
+
+  function setMessageText(el, text) {
+    if (el.dataset.role === "assistant") {
+      el.innerHTML = renderMarkdownLite(text);
+    } else {
+      el.textContent = text;
+    }
   }
 
   fab.addEventListener("click", () => toggle(win.hidden));
@@ -66,10 +143,10 @@
       });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      pending.textContent = data.reply;
+      setMessageText(pending, data.reply);
       history.push({ role: "user", content: text }, { role: "assistant", content: data.reply });
     } catch (err) {
-      pending.textContent = "Beklager, noe gikk galt. Prøv igjen senere.";
+      setMessageText(pending, "Beklager, noe gikk galt. Prøv igjen senere.");
     }
   });
 })();
