@@ -1,8 +1,11 @@
-"""JSON-API. /api/chat er en stubb som skal byttes ut med kundeservice-agenten."""
-from fastapi import APIRouter
+"""JSON-API. /api/chat kjører kundeserviceagenten (app/chatbot.py)."""
+from datetime import date
+
+from fastapi import APIRouter, Request
 from pydantic import BaseModel
 
-from ..config import CHAT_STUB_REPLY
+from .. import chatbot
+from ..auth import current_user
 
 router = APIRouter(prefix="/api")
 
@@ -17,6 +20,7 @@ class ChatResponse(BaseModel):
 
 
 @router.post("/chat", response_model=ChatResponse)
-def chat(payload: ChatRequest) -> ChatResponse:
-    # TODO: bytt ut med kundeservice-agenten (RAG over data/docs + ordre-/produktdata).
-    return ChatResponse(reply=CHAT_STUB_REPLY)
+def chat(payload: ChatRequest, request: Request) -> ChatResponse:
+    user = current_user(request)
+    reply = chatbot.get_reply(payload.message, payload.history, user, date.today().isoformat())
+    return ChatResponse(reply=reply)

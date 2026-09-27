@@ -16,6 +16,8 @@ uvicorn app.main:app --reload
 
 Åpne <http://127.0.0.1:8000>. Tailwind lastes fra CDN, så du må ha nettilgang for at styling skal vises.
 
+For at **chatboten** (nede til høyre) skal svare, trengs i tillegg en Anthropic API-nøkkel. Kopier `.env.example` til `.env` og fyll inn `ANTHROPIC_API_KEY`. Uten nøkkel viser chatten en forklarende feilmelding i stedet for et svar; resten av butikken fungerer som normalt.
+
 `python seed.py` bygger databasen (`shop.db`) på nytt fra `/data`, og sletter alle endringer gjort i appen (nye ordrer, ønskelister, lagerbeholdning). Kjør den når du vil nullstille.
 
 Røyktest (bruker en midlertidig database): `python tests/smoke_test.py`
@@ -44,7 +46,7 @@ Passord for alle: `demo123`
 
 Forside, produktliste med søk/filter/sortering, produktside (varianter, lager, spesifikasjoner, vaskeråd, anmeldelser, relaterte produkter), handlekurv (antall, rabattkode, frakt, framdrift mot fri frakt), kasse uten betaling, ordrebekreftelse, innlogging og Mine sider, ordresporing uten innlogging (`/sporing`, ordrenummer + e-post), ønskeliste, infosider fra markdown, og en chatknapp.
 
-**Chat:** knappen nede til høyre åpner et chatvindu som sender `POST /api/chat` med `{"message": "...", "history": [...]}`. Stubben ligger i [app/routes/api.py](app/routes/api.py) og returnerer `{"reply": "Kundeservice-agenten er ikkje kopla til enno."}`. Bytt ut funksjonen `chat()` med agenten.
+**Chat:** knappen nede til høyre åpner et chatvindu som sender `POST /api/chat` med `{"message": "...", "history": [...]}` og får `{"reply": "..."}` tilbake. Agenten (`app/chatbot.py`) er Claude med verktøy: `sok_produkter` og `hent_ordre` (med samme tilgangsregler som ordresporingen). Policydokumentene fra `data/docs` sendes med i systemprompten («alt i prompten», siden de er små nok – se `docs/chatbot-beslutninger.md`, B1). Et senere søk (BM25/embeddings) skal måles mot denne varianten før det eventuelt erstatter den, se `docs/apne-valg.md`, A1.
 
 ## Kodestruktur
 
@@ -59,6 +61,8 @@ app/
   docs.py          rendrer data/docs/*.md til HTML
   auth.py          innlogging (PBKDF2)
   images.py        genererte SVG-plasshaldarer (farge + kategoriikon)
+  chatbot.py       kundeserviceagenten (Claude + verktøy)
+  env.py           laster .env
   routes/          pages, cart, checkout, account, api
   templates/       Jinja2
   static/          css og js (chat.js, app.js)

@@ -10,10 +10,12 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.sessions import SessionMiddleware
 
 from . import db
+from .env import load_dotenv
 from .routes import account, api, cart, checkout, pages
 from .templating import render
 
 BASE_DIR = Path(__file__).parent
+load_dotenv()
 
 
 @asynccontextmanager

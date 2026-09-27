@@ -342,6 +342,101 @@
     "notes": ""
   },
   {
+    "id": "D19",
+    "category": "dokument",
+    "question": "Hvor lenge er et gavekort gyldig, og kan jeg få pengene utbetalt?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Gavekort er gyldige i 3 år fra kjøpsdato. De kan ikke byttes mot kontanter, men kan brukes på hele ordren.",
+    "key_facts": [
+      "gyldig i 3 år",
+      "ikke kontanter"
+    ],
+    "must_not": [],
+    "sources": [
+      "betaling"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang (dekningshull)."
+  },
+  {
+    "id": "D20",
+    "category": "dokument",
+    "question": "Hvor lenge lagrer dere opplysningene mine, og hvordan sletter jeg kontoen?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Ordre- og kjøpsopplysninger lagres i 5 år (bokføringsloven), og henvendelser til kundeservice i 12 måneder. Kontoen slettes innen 30 dager etter at man ber om det (send e-post til personvern@vindhamar.example). Opplysninger butikken er pålagt å beholde, som ordrer i regnskapet, beholdes til lovpålagt frist er ute. Kontoer som ikke er brukt på 24 måneder slettes automatisk etter varsel.",
+    "key_facts": [
+      "ordredata 5 år",
+      "sletting innen 30 dager",
+      "regnskapsdata beholdes",
+      "personvern@vindhamar.example"
+    ],
+    "must_not": [],
+    "sources": [
+      "personvern"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang. Flere tall som ligner: 5 år, 12 måneder, 24 måneder, 30 dager."
+  },
+  {
+    "id": "D21",
+    "category": "dokument",
+    "question": "Kan jeg bytte til en annen størrelse, og hva koster det?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Ja, innen 30 dager hvis ønsket størrelse er på lager. Det første byttet per ordre er gratis (returetikett og frakt av ny vare). Ekstra bytter koster 89 kr for returetikett pluss vanlig frakt. Er størrelsen utsolgt, tilbys retur og refusjon i stedet.",
+    "key_facts": [
+      "første bytte gratis",
+      "ekstra bytte 89 kr + frakt",
+      "utsolgt gir retur og refusjon"
+    ],
+    "must_not": [],
+    "sources": [
+      "retur-og-bytte"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang."
+  },
+  {
+    "id": "D22",
+    "category": "dokument",
+    "question": "Jeg kjøpte en vare merket Sluttsalg. Kan jeg returnere eller bytte den?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Den kan returneres innen 30 dager (som andre varer, med unntakene for brukte varer og hygieneprodukter), men den kan ikke byttes.",
+    "key_facts": [
+      "kan returneres innen 30 dager",
+      "kan ikke byttes"
+    ],
+    "must_not": [],
+    "sources": [
+      "retur-og-bytte"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang. Unntak som bare står i returdokumentet."
+  },
+  {
+    "id": "D23",
+    "category": "dokument",
+    "question": "Pakken kom med en skade på esken og varen inni er ødelagt. Hva gjør jeg?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Skader oppdaget ved levering må meldes innen 2 virkedager. Butikken erstatter varen eller refunderer kjøpet, og kunden betaler ikke for returfrakten. Håndteres etter reglene om reklamasjon.",
+    "key_facts": [
+      "meld innen 2 virkedager",
+      "erstatning eller refusjon",
+      "ingen returfrakt for kunden"
+    ],
+    "must_not": [],
+    "sources": [
+      "frakt-og-levering",
+      "garanti-og-reklamasjon"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang."
+  },
+  {
     "id": "P01",
     "category": "produkt",
     "question": "Har dere Storhaugen Vandrestøvel i størrelse 45?",
@@ -608,6 +703,26 @@
     ],
     "expect_handoff_offer": false,
     "notes": "Like under fri frakt-grensen."
+  },
+  {
+    "id": "K08",
+    "category": "beregning",
+    "question": "Jeg er dame, har 92 cm brystvidde og vil kjøpe Dunfjell Dunjakke. Hvilken størrelse bør jeg velge?",
+    "login_as": null,
+    "today": "2026-09-26",
+    "expected": "Dunfjell er unisex og følger herretabellen. 92 cm brystvidde tilsvarer herre S (92–97 cm). S finnes på lager i både Sennepsgul og Svart. (I damestørrelser ville 90–95 cm vært M, men det gjelder ikke for unisex-modeller.)",
+    "key_facts": [
+      "unisex følger herretabellen",
+      "velg S",
+      "S på lager"
+    ],
+    "must_not": [],
+    "sources": [
+      "storleiksguide",
+      "produktdata: Dunfjell Dunjakke"
+    ],
+    "expect_handoff_offer": false,
+    "notes": "Lagt til etter gjennomgang. Feil tabell gir M."
   },
   {
     "id": "O01",

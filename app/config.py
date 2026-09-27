@@ -26,5 +26,3 @@ DOC_ORDER = [
     "retur-og-bytte", "frakt-og-levering", "garanti-og-reklamasjon", "betaling", "storleiksguide",
     "vedlikehald", "faq", "kontakt", "om-oss", "personvern",
 ]
-
-CHAT_STUB_REPLY = "Kundeservice-agenten er ikkje kopla til enno."

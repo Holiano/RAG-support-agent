@@ -1,6 +1,6 @@
 # Evalueringssett for kundeservice-boten
 
-[questions.json](questions.json) er et **utkast** på 52 spørsmål med fasit. Det skal brukes til å måle om hver endring i boten gjør den bedre eller dårligere. **Fasitene må leses og godkjennes av deg før vi stoler på dem.**
+[questions.json](questions.json) er et **utkast** på 58 spørsmål med fasit. Det skal brukes til å måle om hver endring i boten gjør den bedre eller dårligere. **Fasitene må leses og godkjennes av deg før vi stoler på dem.**
 
 ## Felter
 
@@ -22,9 +22,9 @@
 
 | Gruppe | Antall | Hva den tester |
 |---|---|---|
-| D, dokument | 18 | Svar som ligger i policydokumentene. Mange har med vilje tall som ligner (14 og 30 dager), unntak som bare står ett sted og sesongregler. |
+| D, dokument | 23 | Svar som ligger i policydokumentene. Mange har med vilje tall som ligner (14 og 30 dager), unntak som bare står ett sted og sesongregler. |
 | P, produkt | 7 | Oppslag i produktdata: lager, tilbud, spesifikasjoner |
-| K, beregning | 7 | Regler som avhenger av kategori eller tall: fri frakt etter rabatt, rabattkoder, reklamasjonsfrist per volum |
+| K, beregning | 8 | Regler som avhenger av kategori eller tall: fri frakt etter rabatt, rabattkoder, reklamasjonsfrist per volum |
 | O, ordre | 11 | Ordreoppslag, tilgangskontroll (ikke lekke andres ordrer) og returfrister mot dagens dato, også grensetilfellet siste dag (O07a) og dagen etter (O07b) |
 | E, grense | 9 | Når boten skal tilby kundeservice, avslå, spørre tilbake, motstå prompt injection og svare på bokmål |
 
