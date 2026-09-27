@@ -10,8 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 os.environ["DB_PATH"] = str(Path(tempfile.mkdtemp()) / "test.db")
-# Ikke gjør ekte kall til Anthropic i røyktesten, uansett hva en lokal .env inneholder:
-os.environ["ANTHROPIC_API_KEY"] = ""
+# Ikke gjør ekte kall til Gemini i røyktesten, uansett hva en lokal .env inneholder:
+os.environ["GEMINI_API_KEY"] = ""
+os.environ["GOOGLE_API_KEY"] = ""
 
 import seed  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
@@ -164,7 +165,7 @@ check("Ønskelisten din er tom" in w.get("/onskeliste").text, "Fjern fra ønskel
 
 # ---- 8. Chat-API ----
 r = c.post("/api/chat", json={"message": "Hei"})
-check(r.status_code == 200 and "ANTHROPIC_API_KEY" in r.json()["reply"],
+check(r.status_code == 200 and "GEMINI_API_KEY" in r.json()["reply"],
      "POST /api/chat svarer (uten nøkkel: ber om oppsett)")
 
 print()
