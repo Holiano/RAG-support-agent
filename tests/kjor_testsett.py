@@ -79,17 +79,21 @@ def judge(client, model: str, case: dict, reply, today: date, kunnskapsbase: str
     verktoy = json.dumps(reply.tool_calls, ensure_ascii=False, default=str)[:6000] if reply.tool_calls else "(ingen)"
     prompt = JUDGE_PROMPT.format(sporsmal=case["sporsmal"], fasit=case["fasit"], svar=reply.reply, dato=today.isoformat(),
                                  verktoy=verktoy, kunnskapsbase=kunnskapsbase)
-    response = client.models.generate_content(
-        model=model, contents=prompt,
-        config=types.GenerateContentConfig(
-            automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
-            response_mime_type="application/json",
-            response_schema={"type": "OBJECT", "properties": {"poeng": {"type": "INTEGER"}, "begrunnelse": {"type": "STRING"}},
-                             "required": ["poeng", "begrunnelse"]}))
-    try:
-        return json.loads(response.text)
-    except (TypeError, ValueError):
-        return {"poeng": None, "begrunnelse": f"Uleselig dommersvar: {response.text!r}"}
+    config = types.GenerateContentConfig(
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+        response_mime_type="application/json",
+        response_schema={"type": "OBJECT", "properties": {"poeng": {"type": "INTEGER"}, "begrunnelse": {"type": "STRING"}},
+                         "required": ["poeng", "begrunnelse"]})
+    for attempt in range(3):  # 503 ved høy belastning skal ikke velte kjøringen
+        try:
+            response = client.models.generate_content(model=model, contents=prompt, config=config)
+            return json.loads(response.text)
+        except (TypeError, ValueError):
+            return {"poeng": None, "begrunnelse": f"Uleselig dommersvar: {response.text!r}"}
+        except Exception as e:  # noqa: BLE001
+            last = f"{type(e).__name__}: {str(e)[:200]}"
+            time.sleep(5 * (attempt + 1))
+    return {"poeng": None, "begrunnelse": f"Dommeren feilet: {last}"}
 
 
 def customer_for(email: str | None) -> dict | None:
