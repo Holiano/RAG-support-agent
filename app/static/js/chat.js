@@ -28,11 +28,39 @@
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
   const history = [];
+  const GREETING = "Hei, hva kan jeg hjelpe deg med?";
+  const SUGGESTIONS = ["Hvor er pakken min?", "Hvordan returnerer jeg en vare?", "Hva koster frakt?"];
+  let greeted = false;
 
   function toggle(open) {
     win.hidden = !open;
     fab.setAttribute("aria-expanded", String(open));
+    if (open && !greeted) greet();
     if (open) input.focus();
+  }
+
+  // Hilsen og forslag vises første gang vinduet åpnes. Hilsenen sendes ikke med i historikken til agenten.
+  function greet() {
+    greeted = true;
+    addMessage("assistant", GREETING);
+    const box = document.createElement("div");
+    box.id = "chat-suggestions";
+    box.className = "flex flex-wrap gap-2 mr-8";
+    for (const q of SUGGESTIONS) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = q;
+      b.className = "text-left text-sm bg-white border border-brand-600 text-brand-700 hover:bg-brand-50 rounded-full px-3 py-1.5";
+      b.addEventListener("click", () => send(q));
+      box.appendChild(b);
+    }
+    messages.appendChild(box);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeSuggestions() {
+    const box = document.getElementById("chat-suggestions");
+    if (box) box.remove();
   }
 
   function escapeHtml(text) {
@@ -82,11 +110,16 @@
   document.getElementById("chat-close").addEventListener("click", () => toggle(false));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !win.hidden) toggle(false); });
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
     input.value = "";
+    send(text);
+  });
+
+  async function send(text) {
+    removeSuggestions();
     addMessage("user", text);
     const pending = addMessage("assistant", "…");
     try {
@@ -102,5 +135,5 @@
     } catch (err) {
       setMessage(pending, "assistant", "Beklager, noe gikk galt. Prøv igjen senere.");
     }
-  });
+  }
 })();
