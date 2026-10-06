@@ -35,16 +35,47 @@
     if (open) input.focus();
   }
 
+  function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  // Gjengir et lite, trygt utvalg av Markdown fra agenten: avsnitt, linjeskift, **fet** og punktlister.
+  // Teksten escapes først, så ingen HTML fra modellen slipper gjennom.
+  function renderMarkdown(text) {
+    const inline = (s) => escapeHtml(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    const isItem = (l) => /^\s*[-*•]\s+/.test(l);
+    const html = [];
+    let para = [], items = [];
+    const flushPara = () => { if (para.length) html.push("<p>" + para.map(inline).join("<br>") + "</p>"); para = []; };
+    const flushList = () => {
+      if (items.length) html.push("<ul class=\"list-disc pl-5 space-y-0.5\">" +
+        items.map((l) => "<li>" + inline(l.replace(/^\s*[-*•]\s+/, "")) + "</li>").join("") + "</ul>");
+      items = [];
+    };
+    for (const line of text.trim().split("\n")) {
+      if (!line.trim()) { flushPara(); flushList(); }
+      else if (isItem(line)) { flushPara(); items.push(line); }
+      else { flushList(); para.push(line); }
+    }
+    flushPara(); flushList();
+    return html.join("");
+  }
+
   function addMessage(role, text) {
     const el = document.createElement("div");
     el.className = role === "user"
       ? "ml-8 bg-brand-600 text-white rounded-2xl rounded-br-sm px-3 py-2 w-fit max-w-full self-end"
-      : "mr-8 bg-white border border-stone-200 rounded-2xl rounded-bl-sm px-3 py-2 w-fit max-w-full";
-    el.textContent = text;
+      : "mr-8 bg-white border border-stone-200 rounded-2xl rounded-bl-sm px-3 py-2 w-fit max-w-full space-y-2";
+    setMessage(el, role, text);
     el.dataset.role = role;
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
     return el;
+  }
+
+  function setMessage(el, role, text) {
+    if (role === "user") el.textContent = text;
+    else el.innerHTML = renderMarkdown(text);
   }
 
   fab.addEventListener("click", () => toggle(win.hidden));
@@ -66,10 +97,10 @@
       });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      pending.textContent = data.reply;
+      setMessage(pending, "assistant", data.reply);
       history.push({ role: "user", content: text }, { role: "assistant", content: data.reply });
     } catch (err) {
-      pending.textContent = "Beklager, noe gikk galt. Prøv igjen senere.";
+      setMessage(pending, "assistant", "Beklager, noe gikk galt. Prøv igjen senere.");
     }
   });
 })();
