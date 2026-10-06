@@ -44,7 +44,7 @@ Passord for alle: `demo123`
 
 Forside, produktliste med søk/filter/sortering, produktside (varianter, lager, spesifikasjoner, vaskeråd, anmeldelser, relaterte produkter), handlekurv (antall, rabattkode, frakt, framdrift mot fri frakt), kasse uten betaling, ordrebekreftelse, innlogging og Mine sider, ordresporing uten innlogging (`/sporing`, ordrenummer + e-post), ønskeliste, infosider fra markdown, og en chatknapp.
 
-**Chat:** knappen nede til høyre åpner et chatvindu som sender `POST /api/chat` med `{"message": "...", "history": [...]}`. Stubben ligger i [app/routes/api.py](app/routes/api.py) og returnerer `{"reply": "Kundeservice-agenten er ikkje kopla til enno."}`. Bytt ut funksjonen `chat()` med agenten.
+**Chat:** knappen nede til høyre åpner et chatvindu som sender `POST /api/chat` med `{"message": "...", "history": [...]}`. Stubben ligger i [app/routes/api.py](app/routes/api.py) og returnerer `{"reply": "Kundeserviceagenten er ikke koblet til ennå."}`. Bytt ut funksjonen `chat()` med agenten.
 
 ## Kodestruktur
 
@@ -90,7 +90,7 @@ Databasetabeller: `products`, `variants`, `reviews`, `customers`, `orders`, `ord
 
 Sidene rendres **direkte fra markdown-filene** i `data/docs` (endringer vises uten omstart), slik at nettsiden og en senere RAG-løsning bruker nøyaktig samme tekst. `seed.py` legger samtidig en kopi av tekstene i tabellen `docs`.
 
-`retur-og-bytte`, `frakt-og-levering`, `garanti-og-reklamasjon`, `betaling`, `storleiksguide`, `vedlikehald`, `personvern`, `om-oss`, `kontakt`, `faq`.
+`retur-og-bytte`, `frakt-og-levering`, `garanti-og-reklamasjon`, `betaling`, `storrelsesguide`, `vedlikehold`, `personvern`, `om-oss`, `kontakt`, `faq`.
 
 ### Vanskelige detaljer for RAG-agenten (med vilje)
 

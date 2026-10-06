@@ -162,7 +162,7 @@ check("Ønskelisten din er tom" in w.get("/onskeliste").text, "Fjern fra ønskel
 
 # ---- 8. Chat-API ----
 r = c.post("/api/chat", json={"message": "Hei"})
-check(r.status_code == 200 and r.json() == {"reply": "Kundeservice-agenten er ikkje kopla til enno."}, "POST /api/chat gir stubbsvar")
+check(r.status_code == 200 and r.json() == {"reply": "Kundeserviceagenten er ikke koblet til ennå."}, "POST /api/chat gir stubbsvar")
 
 print()
 print("Alt OK" if not failures else f"{len(failures)} feil")

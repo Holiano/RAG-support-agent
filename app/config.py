@@ -23,8 +23,8 @@ STATUS = {
 
 # Rekkefølge og titler for infosidene i footer. Filer i data/docs som ikke står her, blir lagt til til slutt.
 DOC_ORDER = [
-    "retur-og-bytte", "frakt-og-levering", "garanti-og-reklamasjon", "betaling", "storleiksguide",
-    "vedlikehald", "faq", "kontakt", "om-oss", "personvern",
+    "retur-og-bytte", "frakt-og-levering", "garanti-og-reklamasjon", "betaling", "storrelsesguide",
+    "vedlikehold", "faq", "kontakt", "om-oss", "personvern",
 ]
 
-CHAT_STUB_REPLY = "Kundeservice-agenten er ikkje kopla til enno."
+CHAT_STUB_REPLY = "Kundeserviceagenten er ikke koblet til ennå."
