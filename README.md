@@ -84,6 +84,18 @@ python tests/kjor_testsett.py --retriever alt-lokalt       # alle tekstbiter i k
 python tests/kjor_testsett.py --bare ordre-returfrist --uten-dommer
 ```
 
+#### Resultater 6. oktober 2026
+
+Samme 39 spørsmål, tre oppsett. Faktasjekken er maskinell; dommeren er `gemini-3.8-flash` med kunnskapsbasen og verktøyresultatene som grunnlag.
+
+| Oppsett | Fakta | Dommer (snitt av 2) | Tokens inn | Snittlatens |
+|---|---|---|---|---|
+| Flash, vektorsøk (topp 6) | 39/39 | 1,97 | 132 000 | 7,6 s |
+| Flash, alt i kontekst | 39/39 | 1,95 | 737 000 | 8,2 s |
+| Flash-Lite, vektorsøk | 39/39 | 1,72 | 125 000 | 3,2 s |
+
+Vektorsøk gir samme kvalitet som hele kunnskapsbasen i kontekst, til under en femdel av tokenforbruket. Flash-Lite er dobbelt så rask, men gjorde én reell feil (datoregning for en frist) og utelater oftere detaljer som refusjon og unntak. Standardmodellen er derfor Flash. Rapportene med alle svar og dommerbegrunnelser ligger i `tests/rapporter/` (ikke i git).
+
 ## Kodestruktur
 
 ```
